@@ -7,6 +7,8 @@ This script generates the MCP configuration that you need to add to your MCP cli
 
 import json
 import os
+import subprocess
+import sys
 from pathlib import Path
 
 
@@ -36,6 +38,49 @@ def generate_mcp_config():
     return config, str(current_dir)
 
 
+def install_dependencies():
+    """Install Python dependencies if not already installed"""
+    requirements_file = Path(__file__).parent / "mcp_server" / "requirements.txt"
+
+    if not requirements_file.exists():
+        print("⚠️  Warning: requirements.txt not found")
+        return False
+
+    print("🔧 Installing Python dependencies...")
+    try:
+        # Install dependencies
+        result = subprocess.run(
+            [sys.executable, "-m", "pip", "install", "-r", str(requirements_file)],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+
+        print("✅ Dependencies installed successfully!")
+        return True
+
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Failed to install dependencies: {e}")
+        print(f"Error output: {e.stderr}")
+        print("\n💡 Try installing manually:")
+        print(f"   cd mcp_server")
+        print(f"   pip3 install -r requirements.txt")
+        return False
+    except Exception as e:
+        print(f"❌ Unexpected error: {e}")
+        return False
+
+
+def check_dependencies():
+    """Check if MCP dependencies are installed"""
+    try:
+        import mcp
+
+        return True
+    except ImportError:
+        return False
+
+
 def check_prompts():
     """Check available prompt templates"""
     prompts_dir = Path(__file__).parent / "mcp_server" / "prompts"
@@ -51,6 +96,16 @@ def main():
     """Main function"""
     print("🚀 MCP Product Documentation Server")
     print("=" * 50)
+
+    # Check and install dependencies if needed
+    if not check_dependencies():
+        print("📦 MCP dependencies not found. Installing...")
+        if not install_dependencies():
+            print(
+                "\n❌ Setup failed. Please install dependencies manually and try again."
+            )
+            return
+        print()
 
     # Generate configuration
     result = generate_mcp_config()

@@ -17,11 +17,17 @@ cd mcp-product-documentation
 python3 generate_config.py
 ```
 
+This will automatically:
+
+- Install Python dependencies if needed
+- Generate the MCP configuration with correct paths
+- Show you exactly what to copy to your MCP client
+
 That's it! Copy the generated configuration to your MCP client and you're ready to go.
 
 ## Requirements
 
-- **Python 3.8+** (the MCP server will automatically install its dependencies when first run)
+- **Python 3.8+** with pip (dependencies are automatically installed when you run the config generator)
 
 ## Available Prompt Templates
 
@@ -106,9 +112,14 @@ mcp-product-documentation/
 3. **Configure Client**: Add the configuration to your MCP client
 4. **Use**: Access prompt templates through your MCP client
 
-The MCP server automatically handles:
+The setup automatically handles:
 
-- Installing Python dependencies on first run
+- Installing Python dependencies when you run the config generator
+- Generating the correct MCP configuration with absolute paths
+- Detecting all available prompt templates
+
+The MCP server handles:
+
 - Serving prompt templates as MCP tools
 - Input validation and security
 - Error handling
