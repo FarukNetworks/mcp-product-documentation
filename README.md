@@ -38,7 +38,7 @@ The server includes 6 prompt templates for software development:
 - **`create_tsd`** - Technical Specification Document creation
 - **`review_prd`** - Product Requirements Document review
 - **`review_tasks`** - Task review and validation
-- **`break_prd_and_sas_to_tasks`** - Breaking down PRDs and SAS into actionable tasks
+- **`create_tasksand_sas_to_tasks`** - Breaking down PRDs and SAS into actionable tasks
 
 ## MCP Client Integration
 
@@ -82,7 +82,7 @@ Each prompt has its own dedicated tool:
 - `get_prompt_create_tsd`
 - `get_prompt_review_prd`
 - `get_prompt_review_tasks`
-- `get_prompt_break_prd_and_sas_to_tasks`
+- `get_prompt_create_tasksand_sas_to_tasks`
 
 ## Project Structure
 
@@ -96,7 +96,7 @@ mcp-product-documentation/
 │   │   ├── create_tsd.txt
 │   │   ├── review_prd.txt
 │   │   ├── review_tasks.txt
-│   │   └── break_prd_and_sas_to_tasks.txt
+│   │   └── create_tasksand_sas_to_tasks.txt
 │   ├── mcp_prompt_server.py      # Main MCP server
 │   ├── requirements.txt          # Python dependencies
 │   └── tests/                    # Tests
