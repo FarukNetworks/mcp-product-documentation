@@ -32,11 +32,19 @@ npm install
 
 ## STEP 3: Install the development environment
 
+### Option A: Using npm (Recommended)
+
 ```bash
 npm run dev:install
 ```
 
-This will:
+### Option B: Using Python installer
+
+```bash
+python3 install.py
+```
+
+Both methods will:
 
 - Detect your Python installation
 - Install required Python dependencies
