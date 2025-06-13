@@ -4,45 +4,59 @@ A Model Context Protocol (MCP) server that provides access to prompt templates f
 
 ## Features
 
-- 🚀 **Easy Installation**: Install via npm/npx with automatic Python dependency management
 - 📝 **Rich Prompt Templates**: Includes templates for PRD, SAS, TSD creation and review
 - 🔧 **MCP Integration**: Works seamlessly with MCP clients like Cursor IDE
 - 🛡️ **Secure**: Input validation and safe file access
 - 🎯 **Developer-Focused**: Designed specifically for software development workflows
+- 🚀 **Easy Setup**: Simple git clone and install process
 
-## Quick Start
+## STEP 1: Clone the repository
 
-### Option 1: Global Installation
-
-```bash
-npm install -g mcp-product-documentation
-mcp-product-documentation
-```
-
-### Option 2: Run with npx (No Installation)
+Clone the git repository:
 
 ```bash
-npx mcp-product-documentation
+git clone https://github.com/yourusername/mcp-product-documentation
 ```
 
-### Option 3: Use in Project
+Navigate to the mcp-product-documentation folder:
 
 ```bash
-npm install mcp-product-documentation
-npx mcp-product-documentation
+cd mcp-product-documentation
 ```
+
+## STEP 2: Install dependencies
+
+```bash
+npm install
+```
+
+## STEP 3: Install the development environment
+
+```bash
+npm run dev:install
+```
+
+This will:
+
+- Detect your Python installation
+- Install required Python dependencies
+- Set up the MCP server
+
+## STEP 4: Add MCP to your agent configuration
+
+Get the mcp.json configuration:
+
+```bash
+npm run config
+```
+
+This will output the configuration you need to add to your MCP client.
 
 ## Requirements
 
 - **Node.js**: 14.0.0 or higher
 - **Python**: 3.8 or higher (automatically detected)
 - **pip**: For Python dependency installation (usually comes with Python)
-
-The installation process will automatically:
-
-- Detect your Python installation
-- Install required Python dependencies
-- Set up the MCP server
 
 ## Available Prompt Templates
 
@@ -59,13 +73,16 @@ The server includes the following prompt templates:
 
 ### Cursor IDE
 
-Add this to your `~/.cursor/mcp.json`:
+Run `npm run config` to get the exact configuration, then add it to your `~/.cursor/mcp.json`:
 
 ```json
 {
   "mcpServers": {
-    "mcp-prompt": {
-      "command": "mcp-product-documentation"
+    "mcp-product-documentation": {
+      "command": "node",
+      "args": [
+        "/path/to/your/mcp-product-documentation/bin/mcp-product-documentation.js"
+      ]
     }
   }
 }
@@ -73,11 +90,7 @@ Add this to your `~/.cursor/mcp.json`:
 
 ### Other MCP Clients
 
-The server runs as a standard MCP server using stdio transport. Configure your MCP client to run:
-
-```bash
-mcp-product-documentation
-```
+The server runs as a standard MCP server using stdio transport. Use the configuration from `npm run config` for your specific MCP client.
 
 ## Available Tools
 
@@ -110,31 +123,24 @@ Each prompt has its own dedicated tool:
 - `get_prompt_review_tasks`
 - `get_prompt_break_prd_and_sas_to_tasks`
 
-## Command Line Options
+## Development
+
+### Running the Server
 
 ```bash
-mcp-product-documentation [options]
-
-Options:
-  -d, --dev              Run in development mode with verbose output
-  -p, --python <path>    Path to Python executable (default: auto-detect)
-  --check               Check if the server can start successfully
-  -h, --help            Display help information
-  -V, --version         Display version number
+npm start
 ```
-
-## Development
 
 ### Testing the Installation
 
 ```bash
-mcp-product-documentation --check
+npm run dev -- --check
 ```
 
 ### Running in Development Mode
 
 ```bash
-mcp-product-documentation --dev
+npm run dev
 ```
 
 ### Manual Python Setup
@@ -142,7 +148,7 @@ mcp-product-documentation --dev
 If automatic Python dependency installation fails:
 
 ```bash
-cd node_modules/mcp-product-documentation/mcp_server  # or wherever installed
+cd mcp_server
 pip install -r requirements.txt
 ```
 
@@ -164,15 +170,7 @@ brew install python
 sudo apt install python3 python3-pip
 
 # Then retry installation
-```
-
-### Permission Issues
-
-```bash
-# On macOS/Linux, you might need:
-sudo npm install -g mcp-product-documentation
-
-# Or use a Node version manager like nvm
+npm run dev:install
 ```
 
 ### Manual Python Dependencies
@@ -180,6 +178,25 @@ sudo npm install -g mcp-product-documentation
 ```bash
 # If automatic installation fails:
 python3 -m pip install mcp>=1.0.0 httpx>=0.24.0 python-multipart>=0.0.5 pydantic>=2.0.0
+```
+
+## Project Structure
+
+```
+mcp-product-documentation/
+├── bin/                          # CLI executables
+│   └── mcp-product-documentation.js
+├── lib/                          # Library modules
+│   ├── index.js                  # Main library entry
+│   ├── install.js                # Installation script
+│   └── config.js                 # Configuration generator
+├── mcp_server/                   # Python MCP server
+│   ├── prompts/                  # Prompt template files
+│   ├── mcp_prompt_server.py      # Main server
+│   ├── requirements.txt          # Python dependencies
+│   └── tests/                    # Python tests
+├── package.json                  # Node.js package configuration
+└── README.md                     # This file
 ```
 
 ## Contributing

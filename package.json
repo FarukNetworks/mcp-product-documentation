@@ -3,15 +3,12 @@
   "version": "1.0.0",
   "description": "A Model Context Protocol server that provides access to prompt templates for software development tasks",
   "main": "lib/index.js",
-  "bin": {
-    "mcp-product-documentation": "./bin/mcp-product-documentation.js"
-  },
   "scripts": {
     "start": "node bin/mcp-product-documentation.js",
-    "install-python-deps": "node lib/install.js",
+    "dev:install": "node lib/install.js",
     "test": "cd mcp_server && python -m pytest tests/",
     "dev": "node bin/mcp-product-documentation.js --dev",
-    "postinstall": "node lib/install.js"
+    "config": "node lib/config.js"
   },
   "keywords": [
     "mcp",
@@ -37,20 +34,12 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "files": [
-    "bin/",
-    "lib/",
-    "mcp_server/",
-    "README.md",
-    "LICENSE"
-  ],
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^9.4.1",
     "cross-spawn": "^7.0.3"
   },
   "devDependencies": {},
-  "preferGlobal": true,
   "os": [
     "darwin",
     "linux",
