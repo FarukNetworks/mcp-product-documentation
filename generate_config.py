@@ -47,28 +47,74 @@ def install_dependencies():
         return False
 
     print("🔧 Installing Python dependencies...")
-    try:
-        # Install dependencies
-        result = subprocess.run(
-            [sys.executable, "-m", "pip", "install", "-r", str(requirements_file)],
-            capture_output=True,
-            text=True,
-            check=True,
-        )
 
-        print("✅ Dependencies installed successfully!")
-        return True
+    # Try different installation methods in order of preference
+    install_methods = [
+        # Method 1: User installation (safest)
+        {
+            "args": [
+                sys.executable,
+                "-m",
+                "pip",
+                "install",
+                "--user",
+                "-r",
+                str(requirements_file),
+            ],
+            "description": "user installation",
+        },
+        # Method 2: Break system packages (if user allows)
+        {
+            "args": [
+                sys.executable,
+                "-m",
+                "pip",
+                "install",
+                "--break-system-packages",
+                "-r",
+                str(requirements_file),
+            ],
+            "description": "system-wide installation",
+        },
+    ]
 
-    except subprocess.CalledProcessError as e:
-        print(f"❌ Failed to install dependencies: {e}")
-        print(f"Error output: {e.stderr}")
-        print("\n💡 Try installing manually:")
-        print(f"   cd mcp_server")
-        print(f"   pip3 install -r requirements.txt")
-        return False
-    except Exception as e:
-        print(f"❌ Unexpected error: {e}")
-        return False
+    for method in install_methods:
+        try:
+            print(f"   Trying {method['description']}...")
+            result = subprocess.run(
+                method["args"], capture_output=True, text=True, check=True
+            )
+            print("✅ Dependencies installed successfully!")
+            return True
+
+        except subprocess.CalledProcessError as e:
+            if "externally-managed-environment" in e.stderr:
+                print(f"   ⚠️  {method['description']} blocked by system policy")
+                continue
+            else:
+                print(f"   ❌ {method['description']} failed: {e}")
+                continue
+        except Exception as e:
+            print(f"   ❌ Unexpected error with {method['description']}: {e}")
+            continue
+
+    # If all methods failed, provide helpful instructions
+    print("\n❌ Automatic installation failed. Please install manually:")
+    print("\n🔧 Option 1 - User installation (recommended):")
+    print(f"   cd mcp_server")
+    print(f"   python3 -m pip install --user -r requirements.txt")
+
+    print("\n🔧 Option 2 - Virtual environment (safest):")
+    print(f"   python3 -m venv venv")
+    print(f"   source venv/bin/activate")
+    print(f"   pip install -r mcp_server/requirements.txt")
+    print(f"   # Then run: python3 generate_config.py")
+
+    print("\n🔧 Option 3 - System override (use with caution):")
+    print(f"   cd mcp_server")
+    print(f"   python3 -m pip install --break-system-packages -r requirements.txt")
+
+    return False
 
 
 def check_dependencies():

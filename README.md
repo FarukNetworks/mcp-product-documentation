@@ -137,13 +137,31 @@ brew install python
 sudo apt install python3 python3-pip
 ```
 
-### Server Won't Start
+### Dependencies Installation Issues
 
-The server will automatically install its dependencies when first run. If you encounter issues:
+On macOS with Homebrew Python, you might see "externally-managed-environment" errors. The script will automatically try different installation methods, but if it fails, try:
+
+**Option 1 - User installation (recommended):**
 
 ```bash
 cd mcp_server
-pip3 install -r requirements.txt
+python3 -m pip install --user -r requirements.txt
+```
+
+**Option 2 - Virtual environment (safest):**
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r mcp_server/requirements.txt
+# Then run: python3 generate_config.py
+```
+
+**Option 3 - System override (use with caution):**
+
+```bash
+cd mcp_server
+python3 -m pip install --break-system-packages -r requirements.txt
 ```
 
 ### Configuration Issues
