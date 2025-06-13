@@ -1,0 +1,277 @@
+<task_definition>
+Create a comprehensive Product Requirements Document (PRD) that serves as the definitive specification for a product or feature, translating business objectives into clear, actionable requirements that enable development teams to build exactly what stakeholders need while ensuring all functional and non-functional requirements are captured and testable.
+</task_definition>
+
+<context_and_background>
+The PRD is the foundational document that bridges business strategy and technical implementation. It serves as the single source of truth for what needs to be built, why it's important, and how success will be measured. A well-crafted PRD prevents scope creep, reduces development rework, ensures stakeholder alignment, and provides clear acceptance criteria for testing and validation.
+
+The PRD feeds directly into technical design documents (SAS), development task creation, QA test planning, and product launch activities. It must be detailed enough for developers to understand implementation requirements while remaining accessible to business stakeholders for approval and ongoing reference.
+
+Target Audience: Product managers, development teams, QA engineers, UX designers, business stakeholders, and project managers.
+Prerequisites: Clear business objectives, user research insights, competitive analysis, and stakeholder alignment on product vision.
+</context_and_background>
+
+<structure_and_format>
+Create a comprehensive PRD document with the following mandatory sections, targeting 15-25 pages total:
+
+**1. Executive Summary & Business Context** (2-3 pages)
+- Problem statement (1 paragraph, specific and measurable)
+- Business objectives and success metrics (3-5 quantified goals)
+- Target personas and market opportunity
+- Competitive landscape and differentiation
+- High-level timeline and resource requirements
+
+**2. User Research & Personas** (2-3 pages)
+- Primary and secondary user personas with demographics, motivations, and pain points
+- User journey maps for key workflows
+- Research findings and validation data
+- Use cases and user stories in standard format
+
+**3. Functional Requirements** (5-8 pages)
+- Organized by feature groups with unique IDs (FR-001, FR-002, etc.)
+- Each requirement written as: "When [condition], the system shall [behavior]"
+- Acceptance criteria in Given/When/Then format for each requirement
+- Priority levels (Must-have, Should-have, Could-have, Won't-have)
+- Dependencies and relationships between requirements
+
+**4. Non-Functional Requirements** (2-3 pages)
+- Performance requirements with specific metrics (response times, throughput, etc.)
+- Scalability and reliability targets with quantified SLAs
+- Security and compliance requirements
+- Accessibility and localization needs
+- Platform and browser support matrix
+
+**5. User Experience Specifications** (2-3 pages)
+- Wireframes and mockups with annotations
+- Interaction patterns and navigation flows
+- Design system components and style guidelines
+- Responsive design requirements
+- Error handling and edge case UX
+
+**6. Data & Integration Requirements** (1-2 pages)
+- Data models and entity relationships
+- API specifications and endpoints
+- Third-party integrations and dependencies
+- Data migration and import/export needs
+- Privacy and data retention policies
+
+**7. Technical Constraints & Assumptions** (1-2 pages)
+- Technology stack limitations
+- Infrastructure and deployment constraints
+- Performance and resource limitations
+- Regulatory and compliance requirements
+- Assumptions requiring validation
+
+**8. Success Metrics & Analytics** (1-2 pages)
+- Key Performance Indicators (KPIs) with baseline and target values
+- User behavior tracking requirements
+- Business metrics and reporting needs
+- A/B testing and experimentation plans
+- Dashboard and monitoring requirements
+
+**9. Launch & Rollout Strategy** (1-2 pages)
+- Phased rollout plan with timelines
+- Beta testing and user feedback collection
+- Feature flags and gradual release strategy
+- Training and documentation requirements
+- Success criteria for each launch phase
+
+**10. Risk Assessment & Mitigation** (1 page)
+- Technical, business, and market risks with likelihood and impact
+- Mitigation strategies and contingency plans
+- Dependencies on external factors
+- Resource and timeline risks
+
+**11. Appendices** (1-2 pages)
+- Glossary of terms and acronyms
+- References to supporting documents
+- Detailed user research findings
+- Technical specifications and diagrams
+
+Each section must include cross-references to related sections and external documents. Use consistent formatting, numbered requirements, and clear headings throughout.
+</structure_and_format>
+
+<examples_and_non_examples>
+**Good Examples:**
+
+*Functional Requirement:*
+"FR-015: When a user clicks the 'Add to Cart' button on a product page, the system shall add the selected item with chosen options to the user's shopping cart and display a confirmation message within 2 seconds.
+- **Given** a user is viewing a product page with available inventory
+- **When** the user selects product options and clicks 'Add to Cart'
+- **Then** the item is added to cart, cart count updates, and success message appears"
+
+*Non-Functional Requirement:*
+"NF-008: The checkout process shall complete within 3 seconds for 95% of transactions under normal load conditions (up to 1000 concurrent users), measured from payment submission to confirmation page display."
+
+*User Story:*
+"As a returning customer, I want to save my payment information securely so that I can complete future purchases quickly without re-entering card details, reducing checkout time from 3 minutes to under 30 seconds."
+
+**Non-Examples (Avoid These):**
+
+*Vague Functional Requirement:*
+"The system should handle user purchases effectively"
+
+*Unmeasurable Non-Functional Requirement:*
+"The application should be fast and reliable"
+
+*Unclear User Story:*
+"As a user, I want the system to work well so that I can do things easily"
+</examples_and_non_examples>
+
+<tone_and_style>
+Write in a professional, clear tone that is:
+- **Precise**: Use specific, measurable language with quantified targets
+- **Accessible**: Understandable by both technical and non-technical stakeholders
+- **Actionable**: Every requirement should be implementable and testable
+- **Structured**: Consistent formatting with numbered requirements and clear hierarchies
+- **Objective**: Focus on what needs to be built, not how to build it
+- **Complete**: Address all aspects of the user experience and system behavior
+
+Avoid technical jargon when possible, but use precise terminology when necessary. Write requirements as clear, testable statements that leave no room for interpretation. Use active voice and present tense for requirements ("The system shall..." not "The system should...").
+</tone_and_style>
+
+<constraints_and_limitations>
+**Must Include:**
+- Every functional requirement with unique ID and acceptance criteria
+- Quantified non-functional requirements with measurable targets
+- Clear success metrics and KPIs with baseline and target values
+- User personas based on actual research data
+- Complete user journey maps for primary workflows
+- Risk assessment with mitigation strategies
+- Traceability from business objectives to specific requirements
+
+**Must Avoid:**
+- Vague or unmeasurable requirements ("user-friendly", "fast", "reliable")
+- Implementation details or technical solutions
+- Requirements without acceptance criteria
+- Assumptions presented as facts without validation plans
+- Conflicting or contradictory requirements
+- Requirements that cannot be tested or verified
+- Scope creep through "nice-to-have" features in must-have sections
+
+**Quality Standards:**
+- Every requirement must be atomic (one requirement per statement)
+- All requirements must be testable and verifiable
+- Success metrics must have current baselines and specific targets
+- User stories must follow standard format with clear value proposition
+- All external dependencies must be identified and documented
+- Risk likelihood and impact must be quantified (High/Medium/Low with criteria)
+</constraints_and_limitations>
+
+<workflow_and_process>
+**5-Step PRD Creation Process:**
+
+**Step 1: Requirements Gathering & Analysis** (Days 1-3)
+- Conduct stakeholder interviews and user research
+- Analyze existing data and competitive landscape
+- Tag raw requirements as Functional (F), Non-Functional (NF), or Questions (Q)
+- Create initial requirements inventory with priorities
+
+**Step 2: Structure & Organization** (Days 4-5)
+- Organize requirements into logical feature groups
+- Assign unique IDs to all requirements (FR-001, NF-001, etc.)
+- Create user personas and journey maps
+- Draft initial PRD structure with placeholders
+
+**Step 3: Detailed Specification** (Days 6-8)
+- Write detailed requirements with acceptance criteria
+- Create wireframes and UX specifications
+- Define success metrics and analytics requirements
+- Specify technical constraints and assumptions
+
+**Step 4: Review & Validation** (Days 9-10)
+- Stakeholder review sessions with business, UX, and technical teams
+- Validate requirements against user research and business objectives
+- Resolve conflicts and clarify ambiguous requirements
+- Update risk assessment and mitigation strategies
+
+**Step 5: Finalization & Approval** (Days 11-12)
+- Incorporate feedback and finalize all sections
+- Complete traceability matrix linking objectives to requirements
+- Obtain formal approval from key stakeholders
+- Version control and distribution to development teams
+
+**Review Checkpoints:**
+- After Step 2: Validate structure and requirement organization
+- After Step 3: Technical feasibility and completeness review
+- After Step 4: Final stakeholder alignment and approval
+- Post-approval: Change control process for requirement updates
+</workflow_and_process>
+
+<success_criteria_and_deliverables>
+**Primary Deliverable:** Complete PRD document meeting all structural and content requirements
+
+**Success Criteria:**
+1. Every business objective is traceable to specific functional requirements
+2. All requirements have unique IDs and testable acceptance criteria
+3. Success metrics are quantified with baselines and targets
+4. User personas are based on validated research data
+5. Non-functional requirements include specific, measurable targets
+6. Risk assessment covers technical, business, and timeline risks
+7. Document enables direct creation of development tasks and test cases
+8. All stakeholders can understand their responsibilities and deliverables
+
+**Quality Gates:**
+- Requirements completeness: 100% of identified needs addressed
+- Testability: Every requirement has verifiable acceptance criteria
+- Measurability: All success metrics have quantified targets
+- Traceability: Clear links from business goals to specific requirements
+- Stakeholder alignment: Formal approval from all key stakeholders
+
+**Acceptance Test:** Development and QA teams can create detailed implementation plans and test cases directly from the PRD without requiring additional clarification sessions.
+</success_criteria_and_deliverables>
+
+<feedback_and_iteration>
+**Feedback Collection Methods:**
+- Structured stakeholder review sessions with specific feedback forms
+- Technical feasibility assessment with development leads
+- User experience validation with design team
+- Business value validation with product stakeholders
+- Risk assessment review with project management
+
+**Iteration Guidelines:**
+- Major scope changes require business stakeholder approval
+- Requirement modifications must maintain traceability to business objectives
+- New requirements must include priority assessment and impact analysis
+- All changes must be documented with rationale and approval
+- Version control with clear change logs for all updates
+
+**Continuous Improvement:**
+- Post-launch retrospective to identify PRD improvement opportunities
+- Feedback collection from development teams on requirement clarity
+- Analysis of requirement changes during development to improve future PRDs
+- Regular template updates based on lessons learned
+</feedback_and_iteration>
+
+<quality_checklist>
+Before finalizing the PRD, verify:
+- [ ] All business objectives are clearly stated and measurable
+- [ ] Every functional requirement has a unique ID and acceptance criteria
+- [ ] Non-functional requirements include specific, quantified targets
+- [ ] User personas are based on validated research data
+- [ ] Success metrics have current baselines and specific targets
+- [ ] All assumptions are explicitly stated with validation plans
+- [ ] Risk assessment includes likelihood, impact, and mitigation strategies
+- [ ] Dependencies on external systems and teams are identified
+- [ ] Traceability matrix links all requirements to business objectives
+- [ ] Document is accessible to both technical and non-technical stakeholders
+- [ ] All requirements are testable and verifiable
+- [ ] Scope boundaries are clearly defined (in-scope vs out-of-scope)
+- [ ] Timeline and resource requirements are realistic and approved
+- [ ] Change control process is defined for requirement updates
+</quality_checklist>
+
+<template_usage_instructions>
+1. **Start with business context**: Clearly define the problem and business objectives before diving into requirements
+2. **Use the 5-step workflow**: Follow the structured process to ensure completeness and quality
+3. **Write atomic requirements**: Each requirement should be a single, testable statement
+4. **Include acceptance criteria**: Every functional requirement needs Given/When/Then acceptance criteria
+5. **Quantify everything**: Use specific numbers for performance, success metrics, and targets
+6. **Validate with users**: Ensure requirements align with actual user needs and research findings
+7. **Review iteratively**: Use structured feedback sessions to refine and improve the document
+8. **Maintain traceability**: Keep clear links between business objectives and specific requirements
+9. **Plan for change**: Include change control processes for requirement updates during development
+10. **Test the document**: Ensure development teams can create tasks directly from the PRD
+
+Following this enhanced structure and process, your PRD becomes a comprehensive contract that eliminates ambiguity, ensures stakeholder alignment, and enables efficient development planning and execution.
+</template_usage_instructions> 

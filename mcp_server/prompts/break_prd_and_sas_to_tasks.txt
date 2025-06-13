@@ -1,0 +1,497 @@
+<task_definition>
+Systematically decompose Product Requirements Document (PRD) and Solution Architecture Specification (SAS) into comprehensive, development-ready tasks that ensure complete requirement coverage, proper technical implementation, and efficient development execution. Create a structured task hierarchy with epics, user stories, and detailed development tasks that enable teams to build the solution without gaps or ambiguity.
+</task_definition>
+
+<context_and_background>
+Task breakdown is the critical translation step that transforms high-level business requirements and technical architecture into specific, actionable work items that development teams can execute. This process ensures that every PRD requirement and SAS specification is properly implemented through well-defined tasks with clear acceptance criteria, dependencies, and success measures.
+
+Effective task breakdown prevents scope gaps, reduces development uncertainty, and enables accurate estimation and planning. It serves as the bridge between what needs to be built (PRD), how it should be architected (SAS), and the specific work required to implement it. Poor task breakdown leads to missed requirements, unclear work items, estimation errors, and project delays.
+
+The breakdown process must be systematic and comprehensive, ensuring that all functional requirements, non-functional requirements, technical specifications, and cross-cutting concerns are properly covered. Each task should be independently implementable, testable, and traceable back to specific requirements.
+
+Target Audience: Product managers, technical leads, development team leads, and project managers responsible for creating actionable development work items.
+Prerequisites: Approved PRD and SAS documents, understanding of user journeys and technical architecture, access to project management tools for task creation.
+</context_and_background>
+
+<structure_and_format>
+Execute a systematic 7-phase breakdown process producing a complete task hierarchy:
+
+**Phase 1: Document Analysis & Tagging** (60-90 minutes)
+- Comprehensive review of PRD and SAS documents
+- Tag all functional requirements, non-functional requirements, and technical specifications
+- Extract key entities, user roles, and system components
+- Identify cross-cutting concerns and dependencies
+
+**Phase 2: Epic Definition** (45-60 minutes)
+- Group related requirements into 3-7 high-level epics
+- Map epics to PRD sections and business objectives
+- Define epic scope and success criteria
+- Establish epic priorities and dependencies
+
+**Phase 3: User Journey Decomposition** (90-120 minutes)
+- Break epics into complete user journeys
+- Define user stories with clear value propositions
+- Create acceptance criteria for each user story
+- Validate journey completeness and flow
+
+**Phase 4: Development Task Creation** (120-180 minutes)
+- Convert user stories into specific development tasks
+- Define technical implementation requirements
+- Specify acceptance criteria and definition of done
+- Estimate effort and identify dependencies
+
+**Phase 5: Cross-Cutting Task Addition** (60-90 minutes)
+- Add infrastructure and deployment tasks
+- Include testing, security, and performance tasks
+- Define documentation and training tasks
+- Add monitoring and observability tasks
+
+**Phase 6: Traceability Validation** (30-45 minutes)
+- Create comprehensive coverage matrix
+- Validate all requirements have corresponding tasks
+- Identify and address any gaps or orphaned tasks
+- Ensure proper task linking and dependencies
+
+**Phase 7: Team Review & Refinement** (60-90 minutes)
+- Conduct team walkthrough of all tasks
+- Refine estimates and acceptance criteria
+- Resolve dependencies and sequencing issues
+- Finalize task specifications and priorities
+
+**Deliverable Structure:**
+- Organized task hierarchy: tasks/[epic]/[task].md
+- Comprehensive traceability matrix
+- Epic and task estimation summary
+- Dependency mapping and sequencing plan
+- Team review and approval documentation
+</structure_and_format>
+
+<task_specification_template>
+**Standard Task Template:**
+
+```markdown
+# [TASK-ID] - [Verb-First Title]
+
+## Context & Goal
+**Business Value:** [One sentence linking to PRD objective or metric]
+**Epic:** [Epic name and ID]
+**User Story:** [Related user story if applicable]
+
+## Scope Definition
+**✅ In Scope:**
+- [Specific deliverable 1]
+- [Specific deliverable 2]
+- [Specific deliverable 3]
+
+**⛔ Out of Scope:**
+- [Explicit exclusion 1]
+- [Explicit exclusion 2]
+
+## Technical Specifications
+**Implementation Details:**
+- [API endpoints, data models, algorithms]
+- [Integration points and interfaces]
+- [Configuration and feature flags]
+- [Performance and security requirements]
+
+**Architecture References:**
+- SAS Section: [Specific SAS reference]
+- Technical Dependencies: [System components]
+- Data Flow: [Input/output specifications]
+
+## Acceptance Criteria
+1. **Given** [initial state]
+   **When** [action performed]
+   **Then** [expected outcome]
+
+2. **Given** [edge case state]
+   **When** [edge case action]
+   **Then** [expected handling]
+
+[Continue for all scenarios including error cases]
+
+## Definition of Done
+- [ ] Implementation complete per technical specifications
+- [ ] Unit tests written and passing (>90% coverage)
+- [ ] Integration tests written and passing
+- [ ] Code review completed and approved
+- [ ] Documentation updated (API docs, README, etc.)
+- [ ] Feature flags implemented if required
+- [ ] Telemetry and logging implemented
+- [ ] Security review completed if applicable
+- [ ] Performance testing completed if applicable
+
+## Dependencies
+**Upstream Tasks:** [Tasks that must complete first]
+**External Dependencies:** [APIs, services, data sources]
+**Parallel Tasks:** [Tasks that can run concurrently]
+**Downstream Impact:** [Tasks that depend on this one]
+
+## Resources & References
+**Design Assets:** [Figma links, mockups, wireframes]
+**Technical Docs:** [API contracts, data schemas]
+**PRD References:** [Specific requirement IDs]
+**SAS References:** [Technical specification sections]
+
+## Estimation & Priority
+**Effort Estimate:** [Story points or hours with rationale]
+**Priority:** [P0/P1/P2 or MoSCoW]
+**Risk Level:** [High/Medium/Low with mitigation notes]
+
+## Assignment
+**Primary Owner:** [Developer name]
+**Code Reviewer:** [Reviewer name]
+**QA Owner:** [QA engineer if applicable]
+**Stakeholder:** [Product/business stakeholder]
+```
+</task_specification_template>
+
+<examples_and_non_examples>
+**Good Examples:**
+
+*Well-Defined Development Task:*
+```
+# TASK-AUTH-001 - Implement User Authentication API Endpoint
+
+## Context & Goal
+**Business Value:** Enable secure user login to support FR-015 user authentication requirement
+**Epic:** User Management System
+**User Story:** As a user, I want to log in securely so I can access my account
+
+## Scope Definition
+**✅ In Scope:**
+- POST /api/v1/auth/login endpoint implementation
+- JWT token generation and validation
+- Rate limiting (5 attempts per minute per IP)
+- Authentication logging and monitoring
+
+**⛔ Out of Scope:**
+- Password reset functionality (separate task)
+- Social media login integration
+- Multi-factor authentication
+
+## Technical Specifications
+**Implementation Details:**
+- Express.js route handler with bcrypt password validation
+- JWT token with 24-hour expiration
+- Redis-based rate limiting implementation
+- Structured logging with correlation IDs
+
+**Architecture References:**
+- SAS Section: 3.2 Authentication Service
+- Technical Dependencies: User database, Redis cache
+- Data Flow: Client → API → Database → JWT response
+
+## Acceptance Criteria
+1. **Given** valid email and password
+   **When** POST request to /api/v1/auth/login
+   **Then** return 200 with valid JWT token
+
+2. **Given** invalid credentials
+   **When** POST request with wrong password
+   **Then** return 401 with error message
+
+3. **Given** rate limit exceeded
+   **When** 6th login attempt within 1 minute
+   **Then** return 429 with retry-after header
+
+## Estimation & Priority
+**Effort Estimate:** 8 story points (includes testing and documentation)
+**Priority:** P0 (blocks other authentication features)
+**Risk Level:** Medium (external Redis dependency)
+```
+
+*Complete Epic Definition:*
+```
+# EPIC-USER-MGMT - User Management System
+
+## Epic Overview
+**Business Objective:** Implement complete user lifecycle management per PRD Section 3
+**Success Metrics:** 
+- User registration completion rate >85%
+- Login success rate >99%
+- Account management task completion >90%
+
+## User Stories Included:**
+- USER-001: User registration with email verification
+- USER-002: Secure user authentication
+- USER-003: Password reset functionality
+- USER-004: Profile management
+- USER-005: Account deactivation
+
+## Technical Scope:**
+- Authentication service implementation
+- User database schema and APIs
+- Email notification system integration
+- Security controls and audit logging
+
+## Dependencies:**
+- Email service configuration
+- Database migration scripts
+- Security review and approval
+
+## Acceptance Criteria:**
+- All user stories completed with acceptance criteria met
+- Security review passed
+- Performance targets met (login <2s, registration <5s)
+- Integration tests passing end-to-end
+```
+
+**Non-Examples (Avoid These):**
+
+*Vague Task Definition:*
+```
+# TASK-001 - Add user login
+**Goal:** Users need to be able to log in
+**Acceptance Criteria:** Login works
+**Estimate:** TBD
+```
+
+*Overly Broad Task:*
+```
+# TASK-002 - Implement entire user management system
+**Scope:** Everything related to users
+**Estimate:** 50 story points
+```
+
+*Missing Technical Details:*
+```
+# TASK-003 - Create login API
+**Goal:** API for user login
+**Acceptance Criteria:** API returns success or failure
+**Technical Details:** Use some authentication method
+```
+</examples_and_non_examples>
+
+<tone_and_style>
+Maintain a systematic, comprehensive tone that is:
+- **Methodical**: Follow structured approach to ensure complete coverage
+- **Precise**: Use specific technical language and clear requirements
+- **Actionable**: Every task should be immediately implementable
+- **Comprehensive**: Cover all aspects including testing, documentation, and deployment
+- **Traceable**: Maintain clear links back to requirements and architecture
+- **Collaborative**: Enable team understanding and contribution
+
+Write task specifications that eliminate ambiguity and provide developers with everything needed to implement successfully. Use consistent terminology and formatting across all tasks to enable efficient team collaboration.
+</tone_and_style>
+
+<constraints_and_limitations>
+**Task Breakdown Scope - Must Include:**
+- All functional requirements from PRD
+- All non-functional requirements from PRD
+- All technical specifications from SAS
+- Complete user journey implementation
+- Testing tasks for all functionality
+- Infrastructure and deployment tasks
+- Documentation and training tasks
+- Security and compliance tasks
+- Monitoring and observability tasks
+
+**Task Breakdown Scope - Must Exclude:**
+- Implementation details better left to developer discretion
+- Technology choices already decided in SAS
+- Business strategy and market decisions
+- Resource allocation and team assignments
+- Detailed project scheduling and timeline management
+- Budget and cost considerations
+
+**Quality Standards for Tasks:**
+- Each task ≤2 days of development work
+- Clear, measurable acceptance criteria for every task
+- Specific technical implementation requirements
+- Proper dependency identification and sequencing
+- Traceability to specific PRD/SAS requirements
+- Complete definition of done criteria
+- Realistic effort estimates with rationale
+
+**Organizational Constraints:**
+- Tasks must fit within sprint planning cycles
+- Must align with team skills and capacity
+- Must follow organizational coding and documentation standards
+- Must integrate with existing CI/CD and deployment processes
+- Must comply with security and compliance requirements
+</constraints_and_limitations>
+
+<breakdown_methodology>
+**Requirements Analysis Process:**
+
+**Functional Requirement Breakdown:**
+1. Identify all FR-XXX items from PRD
+2. Map to user roles and journeys
+3. Break into atomic user stories
+4. Create implementation tasks for each story
+5. Add testing and validation tasks
+
+**Non-Functional Requirement Breakdown:**
+1. Identify all NFR-XXX items from PRD
+2. Map to technical implementation approaches
+3. Create performance, security, and scalability tasks
+4. Add monitoring and validation tasks
+5. Include compliance and audit tasks
+
+**Technical Specification Breakdown:**
+1. Extract all implementation requirements from SAS
+2. Create tasks for each component and interface
+3. Add integration and deployment tasks
+4. Include infrastructure and configuration tasks
+5. Add documentation and maintenance tasks
+
+**Cross-Cutting Concerns:**
+1. Security implementation and testing
+2. Performance optimization and monitoring
+3. Accessibility compliance and testing
+4. Documentation and training materials
+5. Deployment automation and rollback procedures
+</breakdown_methodology>
+
+<traceability_matrix_template>
+**Requirements Coverage Matrix:**
+
+| PRD ID | Requirement | Epic | User Stories | Development Tasks | Test Tasks | Status |
+|--------|-------------|------|--------------|-------------------|------------|--------|
+| FR-001 | User Registration | USER-MGMT | USER-001 | TASK-001, TASK-002 | TEST-001 | ✅ Complete |
+| FR-002 | User Authentication | USER-MGMT | USER-002 | TASK-003, TASK-004 | TEST-002 | ✅ Complete |
+| NFR-001 | Response Time <200ms | PERFORMANCE | PERF-001 | TASK-005, TASK-006 | TEST-003 | ✅ Complete |
+
+**Epic Breakdown Summary:**
+
+| Epic ID | Epic Name | User Stories | Dev Tasks | Test Tasks | Total Effort | Priority |
+|---------|-----------|--------------|-----------|------------|--------------|----------|
+| USER-MGMT | User Management | 5 | 15 | 8 | 120 SP | P0 |
+| ORDER-PROC | Order Processing | 7 | 22 | 12 | 180 SP | P0 |
+| REPORTING | Analytics & Reporting | 3 | 8 | 5 | 65 SP | P1 |
+
+**Dependency Mapping:**
+
+| Task ID | Depends On | Blocks | Parallel With | External Dependencies |
+|---------|------------|--------|---------------|----------------------|
+| TASK-001 | DB-SETUP | TASK-003, TASK-004 | TASK-002 | Email service config |
+| TASK-003 | TASK-001 | TASK-005 | TASK-004 | Redis cache setup |
+</traceability_matrix_template>
+
+<workflow_and_process>
+**Pre-Breakdown Preparation:**
+1. Gather approved PRD and SAS documents
+2. Set up project management tool and folder structure
+3. Prepare traceability matrix templates
+4. Schedule team collaboration sessions
+5. Block 8-12 hours for comprehensive breakdown
+
+**Breakdown Execution:**
+1. **Analysis Phase**: Document review and requirement tagging
+2. **Epic Phase**: High-level grouping and prioritization
+3. **Story Phase**: User journey decomposition and story creation
+4. **Task Phase**: Detailed development task specification
+5. **Cross-Cutting Phase**: Infrastructure and supporting task addition
+6. **Validation Phase**: Coverage verification and gap analysis
+7. **Review Phase**: Team collaboration and refinement
+
+**Post-Breakdown Process:**
+1. Finalize all task specifications and estimates
+2. Create comprehensive traceability documentation
+3. Set up project management tool with all tasks
+4. Conduct team training on task specifications
+5. Establish ongoing task refinement process
+6. Archive breakdown documentation for audit trail
+
+**Quality Gates:**
+- 100% PRD requirement coverage validated
+- All user journeys complete end-to-end
+- Every task has clear acceptance criteria
+- All dependencies identified and sequenced
+- Team consensus on estimates and priorities
+- Traceability matrix complete and accurate
+</workflow_and_process>
+
+<success_criteria_and_deliverables>
+**Primary Deliverables:**
+- Complete task hierarchy organized in tasks/[epic]/[task].md structure
+- Comprehensive traceability matrix linking requirements to tasks
+- Epic and task estimation summary with effort breakdown
+- Dependency mapping and implementation sequencing plan
+- Team review documentation and approval records
+
+**Success Criteria:**
+1. 100% of PRD requirements mapped to specific tasks
+2. All SAS technical specifications covered by implementation tasks
+3. Complete user journeys with no gaps in task coverage
+4. Every task has clear, measurable acceptance criteria
+5. All task dependencies identified and properly sequenced
+6. Realistic effort estimates with team consensus
+7. Proper task organization enabling efficient development
+8. Comprehensive testing and quality assurance coverage
+
+**Quality Metrics:**
+- Requirements coverage: 100% of PRD/SAS items mapped
+- Task clarity: 100% of tasks have complete specifications
+- Estimation accuracy: Team consensus on all effort estimates
+- Dependency completeness: All task relationships identified
+- Implementation readiness: Development can start immediately
+
+**Expected Outcomes:**
+- Reduced development uncertainty and scope questions
+- Improved estimation accuracy and sprint planning
+- Better development velocity through clear task specifications
+- Enhanced quality through comprehensive testing coverage
+- Stronger stakeholder confidence in delivery capability
+</success_criteria_and_deliverables>
+
+<continuous_improvement>
+**Breakdown Effectiveness Tracking:**
+- Monitor task completion rates and cycle times
+- Track scope changes and task modifications during development
+- Measure estimation accuracy against actual effort
+- Collect team feedback on task clarity and completeness
+- Analyze patterns in task breakdown across projects
+
+**Process Enhancement:**
+- Update task templates based on development feedback
+- Refine breakdown methodology based on project outcomes
+- Enhance traceability matrix format for better usability
+- Develop automated checks for task completeness
+- Share best practices across development teams
+
+**Knowledge Management:**
+- Document lessons learned from each breakdown session
+- Maintain library of effective task patterns and templates
+- Update organizational standards based on successful approaches
+- Train new team members on effective task breakdown techniques
+- Establish peer review process for task quality validation
+</continuous_improvement>
+
+<quality_checklist>
+Before finalizing the task breakdown, verify:
+- [ ] All PRD functional requirements have corresponding tasks
+- [ ] All PRD non-functional requirements are addressed
+- [ ] All SAS technical specifications are covered
+- [ ] Every user journey is complete with no gaps
+- [ ] All tasks have clear, measurable acceptance criteria
+- [ ] Task dependencies are properly identified and sequenced
+- [ ] No tasks exceed 2 days of development effort
+- [ ] Testing tasks cover all functional and non-functional requirements
+- [ ] Infrastructure and deployment tasks are included
+- [ ] Documentation and training tasks are specified
+- [ ] Security and compliance tasks are addressed
+- [ ] Monitoring and observability tasks are included
+- [ ] Traceability matrix is complete and accurate
+- [ ] Team has reviewed and approved all task specifications
+- [ ] Project management tool is set up with all tasks
+- [ ] Folder structure tasks/[epic]/[task].md is properly organized
+</quality_checklist>
+
+<mandatory_requirements>
+**CRITICAL: Task Organization Requirements**
+- MUST breakdown all tasks and epics into folder structure: tasks/[epic]/[task].md
+- MUST use mcp_sequential-thinking_sequentialthinking tool to plan the breakdown process
+- MUST use sequential thinking for each individual task creation
+- MUST ensure every task file follows the standard template format
+- MUST maintain traceability from PRD/SAS requirements to specific task files
+- MUST validate complete coverage before considering breakdown complete
+
+**Implementation Process:**
+1. Use sequential thinking to plan the overall breakdown approach
+2. Use sequential thinking for each epic definition and task creation
+3. Create physical task files in the specified folder structure
+4. Validate traceability and coverage systematically
+5. Document the complete breakdown process and decisions
+</mandatory_requirements>
