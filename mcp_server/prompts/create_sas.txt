@@ -1,0 +1,212 @@
+<task_definition>
+Create a comprehensive Solution Architecture Specification (SAS) that translates a Product Requirements Document (PRD) into actionable technical implementation guidance, enabling development teams to break down work into specific, well-defined tasks without architectural ambiguity.
+</task_definition>
+
+<context_and_background>
+The SAS serves as the critical bridge between business requirements (PRD) and implementation (development tasks). It prevents costly rework by establishing architectural decisions upfront, defines clear component boundaries, and ensures non-functional requirements are addressed systematically. This document becomes the single source of truth for technical decisions during development.
+
+Target Audience: Development teams, technical leads, DevOps engineers, and QA teams who will implement the solution.
+Prerequisites: Completed and approved PRD, access to technical stakeholders, understanding of existing system constraints.
+</context_and_background>
+
+<structure_and_format>
+Produce a 10-15 page document with the following mandatory sections:
+
+1. **Document Metadata** (0.5 pages)
+   - Title, version, owner, approvers, change log
+   - Links to related PRD and supporting documents
+
+2. **Scope & Objectives** (1 page)
+   - Single paragraph business goal extracted from PRD
+   - Bulleted in-scope and out-of-scope items
+   - Success criteria and definition of done
+
+3. **Architectural Decision Records (ADRs)** (2-3 pages)
+   - Technology stack choices with rationale
+   - Buy vs build decisions
+   - Synchronous vs asynchronous patterns
+   - Data storage and processing approaches
+   - Each decision must include: Context, Options Considered, Decision, Consequences
+
+4. **System Context Diagram** (1 page)
+   - C4 System-level view showing external actors and systems
+   - Trust boundaries and data flows clearly marked
+   - Integration points with existing systems
+
+5. **Component Architecture** (3-4 pages)
+   - High-level component diagram with unique IDs (e.g., AUTH-SVC, ORDER-API)
+   - Each component: single-line responsibility, primary data owned, key interfaces
+   - Component interaction patterns and dependencies
+
+6. **Detailed Component Design** (4-5 pages)
+   - Per-component design briefs including:
+     - Responsibilities and public interfaces
+     - Key classes, database tables, message queues
+     - Error handling and retry strategies
+     - Technology choices and configuration
+     - Performance and scalability considerations
+
+7. **Runtime Workflows** (2-3 pages)
+   - Sequence diagrams for each major user journey from PRD
+   - Happy path and key failure scenarios
+   - Cross-component interaction patterns
+
+8. **Non-Functional Requirements Mapping** (1-2 pages)
+   - Table format: NFR | Target | Design Approach | Verification Method
+   - Performance, availability, security, scalability requirements
+   - Monitoring and alerting strategies
+
+9. **Data & API Contracts** (1-2 pages)
+   - API specifications (OpenAPI/Swagger stubs)
+   - Data models and database schemas
+   - Message formats and event schemas
+   - Migration strategies for existing data
+
+10. **Implementation Standards** (1 page)
+    - Coding conventions and style guides
+    - Testing strategies and coverage requirements
+    - Documentation and code review standards
+    - Deployment and release processes
+
+11. **Security & Compliance** (1 page)
+    - Authentication and authorization model
+    - Data protection and encryption requirements
+    - Audit logging and compliance considerations
+    - Security testing and vulnerability management
+
+12. **Infrastructure & Deployment** (1 page)
+    - Infrastructure as Code approach
+    - CI/CD pipeline design
+    - Environment strategy and promotion process
+    - Monitoring, logging, and observability
+
+13. **Risks & Mitigation** (1 page)
+    - Technical risks with likelihood and impact
+    - Mitigation strategies and contingency plans
+    - Dependencies and external factors
+    - Timeline and resource constraints
+
+14. **Traceability Matrix** (0.5 pages)
+    - PRD Requirement ID mapped to Components and Design Elements
+    - Verification that all requirements are addressed
+
+Include diagrams using standard notation (C4, UML, or similar). Each diagram must have a clear title, legend, and explanatory text.
+</structure_and_format>
+
+<examples_and_non_examples>
+**Good Examples:**
+
+*Component Description:*
+"AUTH-SVC: Handles user authentication and authorization. Owns user credentials, roles, and permissions data. Exposes REST API for login/logout and JWT token validation. Uses Redis for session caching and PostgreSQL for persistent storage."
+
+*Architectural Decision:*
+"Decision: Use event-driven architecture for order processing
+Context: Need to handle high-volume orders with multiple downstream systems
+Options: Synchronous REST calls, Message queues, Event streaming
+Decision: Apache Kafka for event streaming
+Consequences: Improved scalability and resilience, but increased operational complexity"
+
+*NFR Specification:*
+"Latency: P95 response time < 200ms for API calls | Design: In-memory caching with Redis, async database writes | Verification: k6 load testing with 1000 concurrent users"
+
+**Non-Examples (Avoid These):**
+
+*Vague Component Description:*
+"User Service: Handles user stuff and manages data"
+
+*Weak Architectural Decision:*
+"We'll use microservices because they're modern and scalable"
+
+*Unclear NFR:*
+"The system should be fast and reliable"
+</examples_and_non_examples>
+
+<tone_and_style>
+Write in a clear, technical tone that is:
+- **Precise**: Use specific technical terms and quantifiable metrics
+- **Actionable**: Every statement should guide implementation decisions
+- **Concise**: Avoid unnecessary jargon while maintaining technical accuracy
+- **Structured**: Use consistent formatting, bullet points, and numbered lists
+- **Visual**: Include diagrams and tables to supplement text
+- **Traceable**: Link decisions back to business requirements and forward to implementation tasks
+
+Avoid academic language or theoretical discussions. Focus on practical implementation guidance that development teams can immediately act upon.
+</tone_and_style>
+
+<constraints_and_limitations>
+**Must Include:**
+- All components needed to satisfy PRD requirements
+- Concrete technology choices with versions where applicable
+- Quantified non-functional requirements with verification methods
+- Clear interfaces between all components
+- Security and compliance considerations
+- Deployment and operational requirements
+
+**Must Avoid:**
+- Generic or placeholder technology choices ("we'll use a database")
+- Vague performance requirements ("should be fast")
+- Missing error handling strategies
+- Undefined integration points with existing systems
+- Architectural decisions without rationale
+- Components without clear ownership or boundaries
+
+**Constraints:**
+- Technology choices must align with organization's existing stack and standards
+- Solution must work within current infrastructure and budget constraints
+- All external dependencies must be identified and approved
+- Security requirements must meet organizational compliance standards
+- Performance targets must be realistic and measurable
+</constraints_and_limitations>
+
+<deliverables_and_success_criteria>
+**Primary Deliverable:** Complete SAS document meeting all structural requirements
+
+**Success Criteria:**
+1. Every PRD requirement is traceable to specific components and design elements
+2. All architectural decisions include clear rationale and alternatives considered
+3. Component boundaries are well-defined with explicit interfaces
+4. Non-functional requirements are quantified and verifiable
+5. Technical risks are identified with mitigation strategies
+6. Document enables task breakdown without additional architectural decisions
+7. All diagrams are clear, properly labeled, and add value to the text
+
+**Acceptance Test:** Development team can create detailed implementation tasks directly from the SAS without requiring additional architectural clarification sessions.
+</deliverables_and_success_criteria>
+
+<workflow_and_feedback>
+**Creation Process:**
+1. **Intake Phase** (Day 1): Review PRD, identify stakeholders, schedule clarification sessions
+2. **Architecture Phase** (Days 2-3): Draft ADRs, create system context and component diagrams
+3. **Deep Dive Phase** (Days 4-5): Detailed component design with technical leads
+4. **NFR Workshop** (Day 6): Define quantified requirements with product and infrastructure teams
+5. **Security Review** (Day 7): Security and compliance assessment
+6. **Review Phase** (Days 8-9): Stakeholder review and feedback incorporation
+7. **Finalization** (Day 10): Version 1.0 approval and handoff to development teams
+
+**Feedback Checkpoints:**
+- After Architecture Phase: Validate high-level approach and technology choices
+- After Deep Dive Phase: Review component designs and interfaces
+- After NFR Workshop: Confirm performance and operational requirements
+- Before Finalization: Complete stakeholder review with sign-off
+
+**Iteration Guidelines:**
+- Major architectural changes require stakeholder approval
+- Component interface changes must be validated with affected teams
+- NFR modifications need infrastructure team approval
+- All changes must maintain traceability to PRD requirements
+</workflow_and_feedback>
+
+<quality_checklist>
+Before finalizing the SAS, verify:
+- [ ] All PRD requirements are addressed and traceable
+- [ ] Every component has clear responsibilities and interfaces
+- [ ] All architectural decisions include rationale
+- [ ] NFRs are quantified and verifiable
+- [ ] Security and compliance requirements are addressed
+- [ ] Diagrams are accurate and add value
+- [ ] Technology choices are specific and justified
+- [ ] Error handling strategies are defined
+- [ ] Deployment approach is clearly specified
+- [ ] Risks are identified with mitigation plans
+- [ ] Document enables direct task creation without gaps
+</quality_checklist>

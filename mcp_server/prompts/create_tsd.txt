@@ -1,0 +1,355 @@
+<task_definition>
+Create a comprehensive Technical Solution Design (TSD) that serves as the definitive implementation blueprint, translating Product Requirements Document (PRD) and Solution Architecture Specification (SAS) into precise, executable technical specifications that enable development teams to build the solution without ambiguity or additional architectural decisions.
+</task_definition>
+
+<context_and_background>
+The TSD is the final technical document in the product development lifecycle, bridging the gap between high-level architecture (SAS) and actual code implementation. It provides developers with specific, actionable guidance on exactly what to build, how to build it, and what standards to follow. The TSD eliminates guesswork, reduces development time, and ensures consistent implementation across the entire development team.
+
+Unlike the PRD (what to build) and SAS (how to architect), the TSD focuses on implementation details: specific APIs, data structures, algorithms, error handling, testing strategies, and deployment procedures. It serves as the single source of truth for all technical decisions and implementation standards.
+
+The TSD is version-controlled and frozen at sprint start, with changes managed through formal change control processes. Every development task should reference specific TSD sections, ensuring traceability from business requirements through architecture to implementation.
+
+Target Audience: Software developers, QA engineers, DevOps engineers, technical leads, and security engineers responsible for implementing the solution.
+Prerequisites: Approved PRD and SAS, completed task breakdown, understanding of existing system architecture and constraints.
+</context_and_background>
+
+<structure_and_format>
+Create a comprehensive TSD document with the following mandatory sections, targeting 20-30 pages total:
+
+**1. Executive Summary** (1 page)
+- Problem statement and solution overview
+- Key architectural decisions and rationale
+- Implementation timeline and milestones
+- Success criteria and acceptance tests
+
+**2. Architecture Goals & Constraints** (1-2 pages)
+- Non-functional requirements with specific targets
+- Technical constraints and limitations
+- Compliance and security requirements
+- Performance and scalability targets
+- Technology stack mandates and rationale
+
+**3. System Context Diagram** (1 page)
+- C4 System or Container level view
+- External actors and systems
+- Data flows and integration points
+- Trust boundaries and security zones
+- Deployment environment overview
+
+**4. High-Level Architecture** (2-3 pages)
+- Component diagram with responsibilities
+- Data flow architecture
+- Deployment topology
+- Service boundaries and communication patterns
+- Technology stack mapping
+
+**5. Component Design Specifications** (8-12 pages)
+For each major component, include:
+- Purpose and scope definition
+- Public interfaces (REST APIs, events, queues)
+- Data models with schemas and relationships
+- Key algorithms and business logic
+- State machines and workflow definitions
+- Error handling and retry strategies
+- Configuration and feature flags
+- Internal and external dependencies
+- Performance characteristics and limits
+
+**6. Runtime Workflows** (2-3 pages)
+- Sequence diagrams for each user journey
+- Happy path and error scenarios
+- Cross-component interactions
+- Asynchronous processing flows
+- Event-driven workflows
+
+**7. Non-Functional Requirements Implementation** (2-3 pages)
+- Performance optimization strategies
+- Scalability and capacity planning
+- Security controls and implementation
+- Monitoring and observability
+- Disaster recovery and backup procedures
+
+**8. Development Standards & Guidelines** (2-3 pages)
+- Coding standards and conventions
+- Project structure and organization
+- Branching strategy and PR workflow
+- Code quality gates and metrics
+- Documentation requirements
+
+**9. Testing Strategy** (2-3 pages)
+- Unit testing approach and coverage targets
+- Integration testing strategy
+- End-to-end testing scenarios
+- Performance and load testing plans
+- Test data management and fixtures
+
+**10. Infrastructure & Deployment** (2-3 pages)
+- Infrastructure as Code specifications
+- CI/CD pipeline design and stages
+- Environment configuration and promotion
+- Deployment strategies and rollback procedures
+- Monitoring and alerting setup
+
+**11. Security & Compliance Implementation** (1-2 pages)
+- Authentication and authorization implementation
+- Data encryption and protection measures
+- Security testing and vulnerability management
+- Compliance controls and audit requirements
+- Threat mitigation strategies
+
+**12. Migration & Compatibility** (1-2 pages)
+- Data migration procedures and scripts
+- Backward compatibility requirements
+- Feature flag strategies for gradual rollout
+- Rollback and recovery procedures
+- Legacy system integration approach
+
+**13. Traceability Matrix** (1 page)
+- PRD requirements mapped to TSD sections
+- Task IDs linked to implementation details
+- Test cases mapped to requirements
+- Architecture decisions traced to business needs
+
+**14. Risk Assessment & Mitigation** (1 page)
+- Technical implementation risks
+- Mitigation strategies and contingency plans
+- Dependencies and external factors
+- Timeline and resource risks
+
+Each section must include specific implementation details, code examples where appropriate, and clear acceptance criteria for completion.
+</structure_and_format>
+
+<examples_and_non_examples>
+**Good Examples:**
+
+*Component Interface Specification:*
+```
+## User Authentication Service (AUTH-SVC)
+
+### Public API Endpoints
+POST /api/v1/auth/login
+- Request: { "email": "string", "password": "string" }
+- Response: { "token": "JWT", "expires_in": 3600, "user_id": "uuid" }
+- Status Codes: 200 (success), 401 (invalid credentials), 429 (rate limited)
+- Rate Limit: 5 requests per minute per IP
+- Timeout: 2 seconds maximum response time
+```
+
+*Error Handling Specification:*
+```
+### Error Handling Strategy
+- All API errors return standardized error response format
+- Retry logic: Exponential backoff with jitter (100ms, 200ms, 400ms, 800ms)
+- Circuit breaker: Open after 5 consecutive failures, half-open after 30 seconds
+- Logging: All errors logged with correlation ID and stack trace
+- User-facing errors: Generic messages, detailed errors in logs only
+```
+
+*Data Model Specification:*
+```
+### User Entity Schema
+```sql
+CREATE TABLE users (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW(),
+    is_active BOOLEAN DEFAULT true,
+    CONSTRAINT email_format CHECK (email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$')
+);
+```
+
+**Non-Examples (Avoid These):**
+
+*Vague Component Description:*
+"The user service handles user-related operations and manages user data"
+
+*Incomplete API Specification:*
+"POST /login - authenticates users and returns a token"
+
+*Missing Implementation Details:*
+"The system should handle errors gracefully and provide good user experience"
+</examples_and_non_examples>
+
+<tone_and_style>
+Write in a precise, technical tone that is:
+- **Implementable**: Every specification should be directly translatable to code
+- **Specific**: Use exact values, formats, and technical details
+- **Unambiguous**: Leave no room for interpretation or guesswork
+- **Comprehensive**: Cover all aspects of implementation including edge cases
+- **Consistent**: Use standardized terminology and formatting throughout
+- **Traceable**: Link all decisions back to requirements and architecture
+
+Include code examples, configuration snippets, and specific technical parameters. Use industry-standard notation for diagrams, APIs, and data models. Focus on "how to implement" rather than "what to implement" (that's covered in PRD/SAS).
+</tone_and_style>
+
+<constraints_and_limitations>
+**Must Include:**
+- Specific implementation details for every component
+- Complete API specifications with request/response formats
+- Detailed data models with schemas and constraints
+- Error handling strategies with specific retry logic
+- Performance targets with measurable metrics
+- Security implementation details and controls
+- Testing strategies with coverage requirements
+- Deployment procedures with rollback plans
+
+**Must Avoid:**
+- High-level architectural discussions (covered in SAS)
+- Business requirements and user stories (covered in PRD)
+- Implementation alternatives without clear decisions
+- Vague or unmeasurable specifications
+- Missing error handling or edge case coverage
+- Incomplete API or data model specifications
+- Generic security or performance recommendations
+
+**Quality Standards:**
+- Every API endpoint must have complete specification
+- All data models must include validation rules and constraints
+- Error scenarios must have specific handling procedures
+- Performance targets must be quantified and measurable
+- Security controls must be implementation-specific
+- All external dependencies must be clearly identified
+- Code examples must be syntactically correct and runnable
+
+**Technical Constraints:**
+- Must align with approved technology stack from SAS
+- Must comply with organizational coding standards
+- Must integrate with existing system architecture
+- Must meet security and compliance requirements
+- Must be implementable within resource and timeline constraints
+</constraints_and_limitations>
+
+<implementation_workflow>
+**7-Step TSD Creation Process:**
+
+**Step 1: Requirements Analysis** (Days 1-2)
+- Review approved PRD and SAS documents
+- Analyze completed task breakdown and estimates
+- Identify technical constraints and dependencies
+- Gather existing system documentation and APIs
+
+**Step 2: Architecture Refinement** (Days 3-4)
+- Create detailed system context diagram
+- Design component interfaces and contracts
+- Define data models and relationships
+- Specify integration patterns and protocols
+
+**Step 3: Component Specification** (Days 5-8)
+- Detail each component's implementation requirements
+- Specify APIs, data models, and business logic
+- Define error handling and retry strategies
+- Document configuration and feature flags
+
+**Step 4: Cross-Cutting Concerns** (Days 9-10)
+- Specify security implementation details
+- Define testing strategies and requirements
+- Detail deployment and infrastructure needs
+- Document monitoring and observability requirements
+
+**Step 5: Technical Review** (Days 11-12)
+- Conduct architecture review with technical leads
+- Validate implementation feasibility and estimates
+- Review security and compliance requirements
+- Ensure alignment with organizational standards
+
+**Step 6: Finalization & Approval** (Days 13-14)
+- Incorporate review feedback and finalize document
+- Complete traceability matrix and risk assessment
+- Obtain formal approval from technical stakeholders
+- Version control and distribute to development teams
+
+**Step 7: Implementation Support** (Ongoing)
+- Monitor implementation progress against TSD
+- Manage change requests through formal process
+- Provide clarification and guidance to developers
+- Update documentation based on implementation learnings
+
+**Review Checkpoints:**
+- After Step 2: Validate architecture alignment with SAS
+- After Step 4: Technical feasibility and completeness review
+- After Step 5: Final stakeholder approval and sign-off
+- During Step 7: Ongoing implementation support and updates
+</implementation_workflow>
+
+<success_criteria_and_deliverables>
+**Primary Deliverable:** Complete TSD document with implementation-ready specifications
+
+**Success Criteria:**
+1. Every PRD requirement is traceable to specific implementation details
+2. All component interfaces are completely specified with examples
+3. Data models include complete schemas with validation rules
+4. Error handling covers all identified failure scenarios
+5. Performance targets are quantified and measurable
+6. Security controls are implementation-specific and testable
+7. Testing strategy covers all functional and non-functional requirements
+8. Deployment procedures are complete with rollback plans
+
+**Quality Gates:**
+- Implementation readiness: Developers can start coding without additional clarification
+- Completeness: All components and interfaces fully specified
+- Consistency: Standardized formatting and terminology throughout
+- Traceability: Clear links from requirements to implementation details
+- Testability: All specifications include acceptance criteria and test approaches
+
+**Acceptance Test:** Development team can implement the solution following only the TSD without requiring additional architectural or design decisions.
+</success_criteria_and_deliverables>
+
+<change_management_and_versioning>
+**Version Control Strategy:**
+- TSD frozen at sprint start with formal version number (v1.0)
+- All changes require formal change request with impact assessment
+- Minor updates (clarifications, corrections) increment patch version (v1.0.1)
+- Major changes (new requirements, architecture changes) increment minor version (v1.1.0)
+- Change log maintained with rationale and approval for all modifications
+
+**Change Request Process:**
+1. Identify need for TSD modification during implementation
+2. Assess impact on timeline, resources, and other components
+3. Document change request with rationale and alternatives
+4. Review with technical leads and affected stakeholders
+5. Update TSD with approved changes and increment version
+6. Communicate changes to all affected team members
+7. Update traceability matrix and related documentation
+
+**Implementation Tracking:**
+- Each development task references specific TSD sections
+- Progress tracked against TSD specifications and acceptance criteria
+- Regular reviews to ensure implementation aligns with TSD
+- Feedback loop to improve TSD quality for future projects
+</change_management_and_versioning>
+
+<quality_checklist>
+Before finalizing the TSD, verify:
+- [ ] All PRD requirements are addressed with specific implementation details
+- [ ] Every component has complete interface specifications
+- [ ] All data models include schemas, constraints, and validation rules
+- [ ] Error handling strategies are defined for all failure scenarios
+- [ ] Performance targets are quantified with specific metrics
+- [ ] Security controls are implementation-specific and testable
+- [ ] Testing strategy covers functional and non-functional requirements
+- [ ] Deployment procedures include rollback and recovery plans
+- [ ] All external dependencies are identified and documented
+- [ ] Code examples are syntactically correct and executable
+- [ ] Traceability matrix links requirements to implementation details
+- [ ] Technical review completed with stakeholder approval
+- [ ] Document is version-controlled and ready for implementation
+- [ ] Change management process is defined and communicated
+</quality_checklist>
+
+<template_usage_instructions>
+1. **Start with requirements**: Review PRD and SAS thoroughly before beginning TSD creation
+2. **Follow the 7-step workflow**: Use the structured process to ensure completeness and quality
+3. **Be implementation-specific**: Every specification should be directly translatable to code
+4. **Include concrete examples**: Provide code snippets, API examples, and configuration samples
+5. **Define measurable targets**: Use specific numbers for performance, security, and quality metrics
+6. **Cover edge cases**: Include error handling, failure scenarios, and recovery procedures
+7. **Maintain traceability**: Link all implementation details back to requirements and architecture
+8. **Review iteratively**: Use structured feedback sessions with technical stakeholders
+9. **Version control changes**: Manage updates through formal change control process
+10. **Support implementation**: Provide ongoing guidance and clarification to development teams
+
+Following this enhanced structure and process, your TSD becomes the definitive technical blueprint that enables efficient, consistent implementation while maintaining quality and alignment with business objectives.
+</template_usage_instructions>
+

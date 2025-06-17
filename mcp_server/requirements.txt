@@ -1,0 +1,4 @@
+mcp>=1.0.0
+httpx>=0.24.0 # For testing
+python-multipart>=0.0.5 # For form data, good to have for future extensions
+pydantic>=2.0.0 

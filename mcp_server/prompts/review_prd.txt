@@ -1,0 +1,326 @@
+<task_definition>
+Conduct a comprehensive, systematic review of a Product Requirements Document (PRD) to identify gaps, ambiguities, conflicts, and missing information that could lead to development delays, scope creep, or failed implementations. Transform all findings into neutral, actionable questions that enable the PRD author to improve document quality and completeness.
+</task_definition>
+
+<context_and_background>
+PRD reviews are critical quality gates that prevent costly downstream issues during development. A thorough review catches problems early when they're inexpensive to fix, rather than during development when changes require significant rework. Poor PRD reviews lead to unclear requirements, missed deadlines, scope disputes, and failed product launches.
+
+The review process serves multiple stakeholders: development teams need clear, implementable requirements; QA teams need testable acceptance criteria; business stakeholders need assurance their objectives will be met; and project managers need realistic timelines and resource estimates.
+
+An effective PRD review transforms subjective feedback into objective, answerable questions that drive document improvement. The goal is not to criticize but to systematically identify and resolve ambiguities before development begins.
+
+Target Audience: Technical leads, senior developers, product managers, QA leads, and business analysts responsible for reviewing PRDs.
+Prerequisites: Access to the PRD under review, understanding of the product domain, and familiarity with the organization's PRD template and standards.
+</context_and_background>
+
+<structure_and_format>
+Conduct a structured 3-phase review process producing a questions-only document:
+
+**Phase 1: Preparation & Setup** (15 minutes)
+- Review organizational PRD template and standards
+- Understand the product context and business objectives
+- Prepare review tracking sheet with standardized tags
+- Set up review environment with necessary tools
+
+**Phase 2: Systematic Review** (45-60 minutes)
+- **Pass 1 - Structural Review** (15 minutes): Validate document structure against template
+- **Pass 2 - Content Analysis** (30 minutes): Detailed content review with inline tagging
+- **Pass 3 - Cross-Reference Validation** (15 minutes): Check consistency and identify conflicts
+
+**Phase 3: Question Compilation** (15-20 minutes)
+- Convert all tagged issues into neutral questions
+- Prioritize questions by impact and urgency
+- Format questions in standardized template
+- Prepare final review document for distribution
+
+**Deliverable Format:**
+- Questions-only document in markdown format
+- Maximum 20 words per question
+- Standardized tagging and prioritization
+- Clear references to PRD sections
+- No proposed solutions or subjective opinions
+</structure_and_format>
+
+<review_methodology>
+**Standardized Tagging System:**
+
+| Tag | Category | Definition | Review Focus |
+|-----|----------|------------|--------------|
+| **A** | Assumption | Unvalidated statements or undocumented decisions | Look for "we assume", technology choices without rationale, market assumptions |
+| **M** | Missing | Absent information, incomplete sections, undefined terms | Check for TBD placeholders, empty sections, undefined metrics |
+| **L** | Logic | Inconsistent flows, impossible sequences, contradictory steps | Validate user journeys, technical workflows, dependency chains |
+| **C** | Conflict | Contradictory requirements, duplicate definitions, inconsistent data | Compare similar requirements, check for duplicate IDs, validate metrics |
+| **V** | Vague | Unclear requirements, unmeasurable criteria, ambiguous language | Identify subjective terms, missing quantification, unclear scope |
+
+**Three-Pass Review Process:**
+
+**Pass 1 - Structural Validation:**
+- Compare document structure to organizational template
+- Identify missing mandatory sections
+- Check for proper requirement numbering and formatting
+- Validate cross-references and links
+- Tag major structural issues with [M]
+
+**Pass 2 - Content Deep Dive:**
+- Review each section for completeness and clarity
+- Tag assumptions, missing information, and vague requirements
+- Validate acceptance criteria and success metrics
+- Check user stories and personas for completeness
+- Identify logic gaps in workflows and processes
+
+**Pass 3 - Consistency Check:**
+- Cross-reference requirements for conflicts
+- Validate consistent terminology and definitions
+- Check for duplicate or contradictory requirements
+- Verify data consistency across sections
+- Ensure traceability from objectives to requirements
+</review_methodology>
+
+<examples_and_non_examples>
+**Good Review Questions:**
+
+*Missing Information:*
+"Q-07 [M] FR-015 → What is the maximum acceptable response time for the search API (milliseconds)?"
+
+*Assumption Validation:*
+"Q-12 [A] §3.2 → Has the team confirmed AWS Lambda as the approved serverless platform over alternatives?"
+
+*Logic Gap:*
+"Q-18 [L] Figure 4 → Should user authentication occur before or after payment processing in the checkout flow?"
+
+*Conflict Resolution:*
+"Q-23 [C] NF-008 vs NF-019 → Which availability target is authoritative: 99.9% or 99.5%?"
+
+*Vague Requirement:*
+"Q-31 [V] FR-042 → What specific criteria define 'user-friendly' interface design for acceptance testing?"
+
+**Poor Review Questions (Avoid These):**
+
+*Subjective Opinion:*
+"Why did you choose this approach instead of microservices?" (Contains implied criticism and solution)
+
+*Too Broad:*
+"Can you clarify the user experience section?" (Not specific enough to be actionable)
+
+*Solution-Embedded:*
+"Shouldn't we use Redis for caching instead?" (Proposes solution rather than identifying gap)
+
+*Blame-Oriented:*
+"This requirement doesn't make sense - what were you thinking?" (Unprofessional and non-constructive)
+</examples_and_non_examples>
+
+<tone_and_style>
+Maintain a professional, constructive tone that is:
+- **Objective**: Focus on document quality, not personal opinions
+- **Neutral**: Ask questions without embedded solutions or criticism
+- **Specific**: Reference exact sections, requirements, or page numbers
+- **Actionable**: Every question should be answerable with specific information
+- **Respectful**: Assume positive intent and focus on improvement
+- **Concise**: Maximum 20 words per question to ensure clarity
+
+Write questions that help rather than criticize. Frame issues as information gaps rather than mistakes. Use neutral language that enables the PRD author to provide clarification without feeling defensive.
+</tone_and_style>
+
+<constraints_and_limitations>
+**Review Scope - Must Include:**
+- All mandatory sections per organizational template
+- Functional and non-functional requirements completeness
+- Acceptance criteria and success metrics validation
+- User personas and journey map accuracy
+- Technical constraints and assumptions verification
+- Risk assessment and mitigation strategies
+- Traceability from business objectives to requirements
+
+**Review Scope - Must Exclude:**
+- Implementation details or technical solutions
+- Subjective design preferences or opinions
+- Alternative approaches or recommendations
+- Criticism of business decisions or strategy
+- Detailed technical architecture review (that's for SAS review)
+- Budget or resource allocation discussions
+
+**Quality Standards for Review Questions:**
+- Each question must be answerable with specific information
+- Questions must reference exact PRD sections or requirement IDs
+- No more than 20 words per question
+- Neutral tone without embedded solutions
+- Clear priority classification (P0/P1/P2)
+- Standardized tagging for issue categorization
+
+**Time Constraints:**
+- Complete review within 90 minutes maximum
+- Structural review: 15 minutes
+- Content analysis: 45-60 minutes
+- Question compilation: 15-20 minutes
+- No more than 50 questions total to maintain focus
+</constraints_and_limitations>
+
+<prioritization_framework>
+**Priority Levels:**
+
+**P0 - Critical (Blocks Development)**
+- Missing core functional requirements
+- Undefined success metrics or acceptance criteria
+- Contradictory requirements that prevent implementation
+- Missing integration specifications for dependent systems
+- Undefined security or compliance requirements
+
+**P1 - High (Needed This Sprint)**
+- Incomplete user personas or journey maps
+- Missing non-functional requirements (performance, scalability)
+- Vague acceptance criteria that prevent test case creation
+- Undefined error handling or edge cases
+- Missing data models or API specifications
+
+**P2 - Medium (Clarify Before Launch)**
+- Assumptions requiring validation
+- Nice-to-have features without clear prioritization
+- Incomplete analytics or tracking requirements
+- Missing documentation or training requirements
+- Unclear rollout or deployment strategies
+
+**Question Distribution Guidelines:**
+- Maximum 30% P0 questions (critical blockers)
+- Maximum 50% P1 questions (high priority)
+- Maximum 20% P2 questions (medium priority)
+- If more than 15 P0 questions, recommend PRD revision before development
+</prioritization_framework>
+
+<deliverable_template>
+**Standard Review Document Format:**
+
+```markdown
+# PRD Review Questions
+
+**Document Under Review:** [PRD Title] v[Version Number]
+**Reviewer:** [Your Name] | **Date:** [YYYY-MM-DD]
+**Review Duration:** [X] minutes | **Total Questions:** [X]
+
+## Summary
+- **P0 (Critical):** [X] questions - [Brief summary of critical issues]
+- **P1 (High):** [X] questions - [Brief summary of high priority issues]  
+- **P2 (Medium):** [X] questions - [Brief summary of medium priority issues]
+
+## Questions by Priority
+
+### P0 - Critical Issues (Must Resolve Before Development)
+| # | Tag | PRD Ref | Question | Answer |
+|---|-----|---------|----------|---------|
+| Q-01 | M | §2.1 | What is the target launch market (specific country list)? | |
+| Q-02 | C | FR-008 vs FR-015 | Which payment timeout is correct: 30 seconds or 60 seconds? | |
+
+### P1 - High Priority (Needed This Sprint)
+| # | Tag | PRD Ref | Question | Answer |
+|---|-----|---------|----------|---------|
+| Q-03 | V | NF-012 | What specific response time constitutes "fast" for API calls (milliseconds)? | |
+| Q-04 | A | §4.3 | Has the team confirmed PostgreSQL as the approved database platform? | |
+
+### P2 - Medium Priority (Clarify Before Launch)
+| # | Tag | PRD Ref | Question | Answer |
+|---|-----|---------|----------|---------|
+| Q-05 | M | §8.1 | What analytics events should be tracked for user engagement measurement? | |
+| Q-06 | L | Figure 3 | Should email notification occur before or after account activation? | |
+
+## Next Steps
+1. PRD author to complete Answer column for all P0 questions
+2. Schedule follow-up review for P1 questions within [X] days
+3. P2 questions can be addressed in next PRD iteration
+4. Re-review required if more than [X] P0 questions remain unresolved
+```
+</deliverable_template>
+
+<workflow_and_process>
+**Pre-Review Preparation:**
+1. Obtain latest PRD version and organizational template
+2. Understand product context and business objectives
+3. Prepare review environment with tracking tools
+4. Block 90 minutes of uninterrupted time
+5. Gather any supporting documents (user research, technical constraints)
+
+**Review Execution:**
+1. **Structural Pass** (15 min): Compare to template, identify missing sections
+2. **Content Pass** (45-60 min): Detailed review with systematic tagging
+3. **Consistency Pass** (15 min): Cross-reference validation and conflict identification
+4. **Question Compilation** (15-20 min): Convert tags to neutral questions with priorities
+
+**Post-Review Process:**
+1. Format questions using standard template
+2. Distribute to PRD author and key stakeholders
+3. Set response deadline (typically 3-5 business days)
+4. Track question resolution and PRD updates
+5. Conduct follow-up review if significant changes made
+6. Archive review document with PRD for audit trail
+
+**Quality Gates:**
+- No more than 15 P0 questions (indicates PRD needs major revision)
+- All questions must be neutral and answerable
+- Each question references specific PRD section
+- Review completed within 90-minute time limit
+- Follow-up scheduled within 48 hours of distribution
+</workflow_and_process>
+
+<success_criteria_and_outcomes>
+**Primary Deliverable:** Questions-only review document with prioritized, actionable feedback
+
+**Success Criteria:**
+1. All critical gaps and ambiguities identified and documented
+2. Every question is neutral, specific, and answerable
+3. Questions are properly prioritized and categorized
+4. Review completed within allocated time frame
+5. PRD author can address questions without additional clarification
+6. Development team can proceed with confidence after question resolution
+
+**Quality Metrics:**
+- Review completion time: ≤90 minutes
+- Question clarity: 100% answerable without follow-up
+- Priority accuracy: P0 questions truly block development
+- Response rate: 100% of questions answered within deadline
+- PRD improvement: Measurable reduction in development clarification requests
+
+**Expected Outcomes:**
+- Reduced development delays due to unclear requirements
+- Fewer scope disputes and change requests during implementation
+- Improved PRD quality for future projects
+- Enhanced stakeholder confidence in requirements
+- Faster development velocity due to clearer specifications
+- Better test case creation from improved acceptance criteria
+</success_criteria_and_outcomes>
+
+<feedback_and_continuous_improvement>
+**Review Effectiveness Tracking:**
+- Monitor development team clarification requests post-review
+- Track PRD revision frequency during development
+- Measure time from PRD approval to development start
+- Collect feedback from PRD authors on question quality
+- Analyze patterns in review findings across projects
+
+**Improvement Opportunities:**
+- Update review template based on common findings
+- Refine tagging system based on issue patterns
+- Adjust time allocations based on review complexity
+- Enhance reviewer training for consistent quality
+- Develop automated checks for common issues
+
+**Follow-up Process:**
+- Schedule review retrospective after project completion
+- Document lessons learned for future reviews
+- Update organizational PRD template based on findings
+- Share best practices with other reviewers
+- Maintain review quality standards through peer feedback
+</feedback_and_continuous_improvement>
+
+<quality_checklist>
+Before submitting the review, verify:
+- [ ] All mandatory PRD sections have been reviewed
+- [ ] Each question references specific PRD section or requirement ID
+- [ ] Questions are neutral and contain no embedded solutions
+- [ ] Priority levels are accurately assigned based on impact
+- [ ] No more than 20 words per question
+- [ ] Standardized tagging applied consistently
+- [ ] Review completed within 90-minute time limit
+- [ ] Questions are answerable with specific information
+- [ ] Document formatted using standard template
+- [ ] Summary section accurately reflects findings
+- [ ] Next steps clearly defined for PRD author
+- [ ] Review document ready for immediate distribution
+</quality_checklist> 

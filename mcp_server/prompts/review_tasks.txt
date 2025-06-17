@@ -1,0 +1,370 @@
+<task_definition>
+Conduct a comprehensive review of development tasks to ensure complete coverage of Product Requirements Document (PRD) requirements, alignment with Technical Solution Design (TSD) specifications, and proper task decomposition that enables efficient development execution. Identify gaps, overlaps, and inconsistencies that could lead to incomplete implementation or development delays.
+</task_definition>
+
+<context_and_background>
+Task review is the final quality gate before development begins, ensuring that the breakdown of work properly implements all business requirements and follows technical specifications. A thorough task review prevents scope gaps, reduces development rework, and ensures that every PRD requirement has corresponding implementation tasks.
+
+The task review process validates three critical aspects: coverage (every requirement has tasks), continuity (user journeys are complete), and coherence (tasks don't conflict with each other). This systematic validation ensures that when development starts, teams have clear, complete, and consistent work items that will deliver the intended product.
+
+Poor task reviews lead to missed requirements, incomplete features, conflicting implementations, and project delays. A comprehensive review catches these issues early when they're inexpensive to fix, rather than during development or testing when changes are costly and disruptive.
+
+Target Audience: Project managers, technical leads, product managers, and development team leads responsible for ensuring complete and accurate task breakdown.
+Prerequisites: Approved PRD and TSD documents, completed task breakdown in project management system, understanding of user journeys and system architecture.
+</context_and_background>
+
+<structure_and_format>
+Conduct a systematic 4-phase review process producing a comprehensive task validation report:
+
+**Phase 1: Artifact Collection & Setup** (30 minutes)
+- Gather and validate all required documents (PRD, TSD, task list)
+- Set up traceability matrix template
+- Prepare review tracking tools and templates
+- Validate document versions and approval status
+
+**Phase 2: Coverage Analysis** (60-90 minutes)
+- Map every PRD requirement to corresponding tasks
+- Identify requirements without task coverage
+- Validate task acceptance criteria against PRD specifications
+- Check TSD implementation details coverage in tasks
+
+**Phase 3: Continuity & Flow Validation** (45-60 minutes)
+- Trace complete user journeys through task sequences
+- Validate epic and feature completeness
+- Check task dependencies and ordering
+- Ensure end-to-end workflow coverage
+
+**Phase 4: Coherence & Consistency Check** (30-45 minutes)
+- Identify overlapping or conflicting tasks
+- Validate consistent data models and interfaces across tasks
+- Check for contradictory implementation approaches
+- Ensure consistent technical standards and patterns
+
+**Deliverable Format:**
+- Comprehensive task review report with findings and recommendations
+- Updated traceability matrix linking requirements to tasks
+- Gap analysis with specific missing tasks identified
+- Task improvement recommendations with priorities
+- Sign-off checklist for development readiness
+</structure_and_format>
+
+<review_methodology>
+**Coverage Analysis Framework:**
+
+**Requirements Mapping:**
+- Extract all functional requirements (FR-XXX) from PRD
+- Extract all non-functional requirements (NFR-XXX) from PRD
+- Extract all technical specifications from TSD
+- Map each requirement to corresponding task(s)
+- Identify orphaned requirements without task coverage
+
+**Task Validation Criteria:**
+- Each task has clear acceptance criteria
+- Task scope aligns with linked requirements
+- Task estimates are realistic and justified
+- Task dependencies are properly identified
+- Task descriptions include sufficient implementation detail
+
+**Continuity Analysis Framework:**
+
+**User Journey Mapping:**
+- Identify all user journeys from PRD
+- Trace each journey through corresponding tasks
+- Validate complete end-to-end coverage
+- Check for missing steps or broken flows
+- Ensure proper error handling and edge cases
+
+**Epic Completeness:**
+- Group tasks by epic or feature area
+- Validate complete feature implementation
+- Check for missing integration tasks
+- Ensure proper testing and deployment tasks
+- Validate documentation and training tasks
+
+**Coherence Analysis Framework:**
+
+**Consistency Checks:**
+- Data model consistency across tasks
+- API interface consistency
+- Technical approach consistency
+- Coding standards and patterns alignment
+- Security and compliance consistency
+
+**Conflict Detection:**
+- Overlapping task responsibilities
+- Contradictory implementation approaches
+- Competing resource requirements
+- Conflicting technical decisions
+- Inconsistent acceptance criteria
+</review_methodology>
+
+<examples_and_non_examples>
+**Good Examples:**
+
+*Complete Requirement Coverage:*
+```
+PRD Requirement: FR-015 - User login with email and password
+Mapped Tasks:
+- TASK-101: Implement user authentication API endpoint
+- TASK-102: Create login form UI component
+- TASK-103: Add login validation and error handling
+- TASK-104: Implement session management
+- TASK-105: Add login integration tests
+Coverage Status: ✅ Complete
+```
+
+*Proper Task Specification:*
+```
+Task: TASK-101 - Implement user authentication API endpoint
+Linked Requirements: FR-015, NFR-008 (security), TSD-3.2 (auth service)
+Acceptance Criteria:
+- POST /api/v1/auth/login endpoint accepts email/password
+- Returns JWT token on successful authentication
+- Returns 401 error for invalid credentials
+- Implements rate limiting (5 attempts per minute)
+- Logs all authentication attempts
+Estimate: 5 story points
+Dependencies: TASK-099 (database schema)
+```
+
+*Complete User Journey Coverage:*
+```
+User Journey: New User Registration
+Task Sequence:
+1. TASK-201: Registration form UI
+2. TASK-202: Email validation API
+3. TASK-203: Account creation endpoint
+4. TASK-204: Welcome email service
+5. TASK-205: Account activation flow
+6. TASK-206: Registration integration tests
+Flow Status: ✅ Complete end-to-end coverage
+```
+
+**Non-Examples (Avoid These):**
+
+*Incomplete Requirement Coverage:*
+```
+PRD Requirement: FR-015 - User login with email and password
+Mapped Tasks:
+- TASK-101: Implement login
+Coverage Status: ❌ Incomplete - missing UI, validation, testing
+```
+
+*Vague Task Specification:*
+```
+Task: TASK-101 - Add user login
+Acceptance Criteria: Users can log in
+Estimate: TBD
+Dependencies: Unknown
+```
+
+*Broken User Journey:*
+```
+User Journey: Purchase Flow
+Task Sequence:
+1. TASK-301: Product selection
+2. TASK-303: Payment processing
+Missing: TASK-302 (shopping cart) - breaks the flow
+```
+</examples_and_non_examples>
+
+<tone_and_style>
+Maintain a systematic, analytical tone that is:
+- **Methodical**: Follow structured approach to ensure comprehensive coverage
+- **Objective**: Focus on factual gaps and inconsistencies, not opinions
+- **Detailed**: Provide specific examples and references for all findings
+- **Actionable**: Every finding should include clear recommendations for improvement
+- **Thorough**: Leave no requirement or user journey unexamined
+- **Clear**: Use precise language that enables immediate corrective action
+
+Document findings with specific references to PRD sections, TSD components, and task IDs. Provide concrete recommendations that development teams can implement immediately.
+</tone_and_style>
+
+<constraints_and_limitations>
+**Review Scope - Must Include:**
+- All functional requirements from PRD
+- All non-functional requirements from PRD
+- All technical specifications from TSD
+- Complete user journey validation
+- Task dependency analysis
+- Acceptance criteria validation
+- Epic and feature completeness
+- Integration and testing task coverage
+
+**Review Scope - Must Exclude:**
+- Detailed technical implementation review (covered in code review)
+- Resource allocation and team assignment decisions
+- Timeline and scheduling optimization
+- Budget and cost analysis
+- Individual developer performance assessment
+- Technology choice validation (covered in TSD review)
+
+**Quality Standards for Task Review:**
+- 100% requirement coverage validation
+- All user journeys traced end-to-end
+- Every task has measurable acceptance criteria
+- All task dependencies identified and validated
+- No conflicting or overlapping task responsibilities
+- Consistent technical approaches across related tasks
+- Complete testing and deployment task coverage
+
+**Time Constraints:**
+- Complete review within 4 hours maximum
+- Coverage analysis: 60-90 minutes
+- Continuity validation: 45-60 minutes
+- Coherence check: 30-45 minutes
+- Report compilation: 30 minutes
+- Focus on critical gaps rather than minor inconsistencies
+</constraints_and_limitations>
+
+<traceability_framework>
+**Requirements Traceability Matrix:**
+
+| PRD ID | Requirement Description | Linked Task IDs | Coverage Status | Gap Analysis |
+|--------|------------------------|-----------------|-----------------|--------------|
+| FR-001 | User registration flow | TASK-101, TASK-102, TASK-103 | Complete | None |
+| FR-002 | Password reset functionality | TASK-104 | Incomplete | Missing UI and email tasks |
+| NFR-001 | Response time < 200ms | TASK-105, TASK-106 | Complete | Performance testing included |
+
+**User Journey Traceability:**
+
+| Journey Name | PRD Section | Task Sequence | Completeness | Missing Elements |
+|--------------|-------------|---------------|--------------|------------------|
+| User Onboarding | §3.1 | TASK-201→TASK-205 | Complete | None |
+| Purchase Flow | §3.2 | TASK-301, TASK-303 | Incomplete | Missing TASK-302 (cart) |
+| Account Management | §3.3 | TASK-401→TASK-404 | Complete | None |
+
+**Technical Specification Traceability:**
+
+| TSD Section | Technical Requirement | Implementing Tasks | Status | Notes |
+|-------------|----------------------|-------------------|--------|-------|
+| TSD-2.1 | Authentication API | TASK-101, TASK-104 | Complete | Includes security requirements |
+| TSD-2.2 | Database schema | TASK-099 | Complete | Foundation for other tasks |
+| TSD-3.1 | Payment integration | TASK-303, TASK-304 | Incomplete | Missing error handling task |
+</traceability_framework>
+
+<gap_analysis_template>
+**Critical Gaps (Must Fix Before Development):**
+- Missing tasks for [specific requirements]
+- Incomplete user journeys: [journey names]
+- Conflicting task specifications: [task IDs]
+- Missing integration points: [system interfaces]
+
+**High Priority Gaps (Fix This Sprint):**
+- Incomplete acceptance criteria: [task IDs]
+- Missing test coverage: [requirement areas]
+- Unclear task dependencies: [task relationships]
+- Inconsistent technical approaches: [affected areas]
+
+**Medium Priority Gaps (Address Before Launch):**
+- Missing documentation tasks: [areas needing docs]
+- Incomplete error handling: [scenarios not covered]
+- Missing performance validation: [NFR requirements]
+- Incomplete deployment tasks: [environment setup]
+
+**Recommendations:**
+1. Create missing tasks for uncovered requirements
+2. Refine acceptance criteria for vague tasks
+3. Resolve conflicting task specifications
+4. Add missing integration and testing tasks
+5. Clarify task dependencies and sequencing
+</gap_analysis_template>
+
+<workflow_and_process>
+**Pre-Review Preparation:**
+1. Collect latest versions of PRD, TSD, and task list
+2. Set up traceability matrix template
+3. Prepare review tools and tracking sheets
+4. Block 4 hours of uninterrupted time
+5. Gather access to project management system
+
+**Review Execution:**
+1. **Coverage Analysis**: Map requirements to tasks, identify gaps
+2. **Continuity Check**: Trace user journeys, validate completeness
+3. **Coherence Review**: Check for conflicts and inconsistencies
+4. **Gap Documentation**: Record findings with specific recommendations
+
+**Post-Review Process:**
+1. Compile comprehensive review report
+2. Prioritize findings by impact and urgency
+3. Create action items for task improvements
+4. Schedule follow-up review after task updates
+5. Obtain stakeholder sign-off on task readiness
+6. Archive review documentation for audit trail
+
+**Quality Gates:**
+- All critical requirements have task coverage
+- User journeys are complete end-to-end
+- No conflicting task specifications remain
+- All tasks have clear acceptance criteria
+- Dependencies are properly identified and sequenced
+</workflow_and_process>
+
+<success_criteria_and_deliverables>
+**Primary Deliverable:** Comprehensive task review report with gap analysis and recommendations
+
+**Success Criteria:**
+1. 100% of PRD requirements mapped to specific tasks
+2. All user journeys validated for complete coverage
+3. No conflicting or overlapping task responsibilities
+4. Every task has clear, measurable acceptance criteria
+5. All task dependencies identified and validated
+6. Integration and testing tasks included for all features
+7. Technical specifications from TSD properly covered
+8. Development team ready to start implementation
+
+**Quality Metrics:**
+- Requirements coverage: 100% of PRD items mapped
+- Journey completeness: All user flows end-to-end validated
+- Task clarity: 100% of tasks have measurable acceptance criteria
+- Dependency accuracy: All task relationships properly identified
+- Conflict resolution: Zero overlapping or contradictory tasks
+
+**Expected Outcomes:**
+- Reduced development delays due to missing requirements
+- Fewer scope gaps discovered during implementation
+- Improved development velocity through clear task specifications
+- Better quality deliverables through comprehensive testing coverage
+- Enhanced stakeholder confidence in delivery capability
+</success_criteria_and_deliverables>
+
+<continuous_improvement>
+**Review Effectiveness Tracking:**
+- Monitor development team clarification requests
+- Track scope changes and additions during development
+- Measure time from task approval to development completion
+- Collect feedback on task clarity and completeness
+- Analyze patterns in review findings across projects
+
+**Process Improvement:**
+- Update review templates based on common findings
+- Refine gap analysis criteria based on project outcomes
+- Enhance traceability matrix format for better usability
+- Develop automated checks for common task issues
+- Share best practices across project teams
+
+**Follow-up Activities:**
+- Schedule post-development retrospective on task quality
+- Document lessons learned for future task breakdowns
+- Update organizational task standards based on findings
+- Train team members on effective task specification
+- Maintain review quality through peer validation
+</continuous_improvement>
+
+<quality_checklist>
+Before approving tasks for development, verify:
+- [ ] All PRD functional requirements have corresponding tasks
+- [ ] All PRD non-functional requirements are addressed
+- [ ] All TSD technical specifications are covered
+- [ ] Every user journey is complete end-to-end
+- [ ] All tasks have clear, measurable acceptance criteria
+- [ ] Task dependencies are properly identified and sequenced
+- [ ] No conflicting or overlapping task responsibilities
+- [ ] Integration tasks connect all system components
+- [ ] Testing tasks cover all functional and non-functional requirements
+- [ ] Deployment and infrastructure tasks are included
+- [ ] Documentation and training tasks are specified
+- [ ] Error handling and edge cases are covered
+- [ ] Performance and security requirements are addressed
+- [ ] Traceability matrix is complete and accurate
+</quality_checklist>
