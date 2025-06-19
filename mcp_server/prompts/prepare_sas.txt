@@ -1,0 +1,380 @@
+<task_definition>
+Prepare comprehensive architectural artifacts and documentation that will serve as foundational inputs for creating a detailed Solution Architecture Specification (SAS). This preparatory phase generates structured technical documentation, diagrams, and decision records that directly feed into the final SAS document creation process.
+</task_definition>
+
+<context_and_purpose>
+This preparation phase bridges the gap between Product Requirements Documents (PRD) and the comprehensive Solution Architecture Specification (SAS). The artifacts created here provide the technical foundation and architectural clarity needed to produce a complete, actionable SAS that development teams can immediately use for implementation planning.
+
+The preparatory outputs serve as building blocks that will be synthesized, refined, and integrated into the final SAS document structure.
+</context_and_purpose>
+
+<input_requirements>
+<required_inputs>
+- Approved Product Requirements Document (PRD)
+- System context and business requirements
+- Existing system architecture documentation (if applicable)
+- Technology constraints and organizational standards
+- Non-functional requirements and SLA targets
+</required_inputs>
+
+<prerequisites>
+- PRD has been reviewed and approved
+- Technical stakeholders are identified and available
+- Existing system constraints are documented
+- Technology stack preferences are established
+</prerequisites>
+</input_requirements>
+
+<deliverable_artifacts>
+<artifact_list>
+1. **C4 Architecture Diagrams** (C4.md)
+   - System Context Diagram showing external actors and boundaries
+   - Container Diagram detailing high-level technical building blocks
+   - Component Diagram breaking down containers into components
+   - All diagrams with proper PlantUML notation and C4 standards
+
+2. **Data Flow Documentation** (data_flow.md)
+   - Comprehensive data flow analysis across system boundaries
+   - Process-specific data flows with detailed descriptions
+   - Data transformation and validation points
+   - Integration patterns and data exchange mechanisms
+
+3. **Deployment Architecture** (deployment.md)
+   - Infrastructure deployment diagram with PlantUML
+   - Environment topology and component placement
+   - Network architecture and security boundaries
+   - Scalability and availability considerations
+
+4. **Non-Functional Requirements Specification** (non_functional.md)
+   - Quantified performance, availability, and scalability targets
+   - Security and compliance requirements
+   - SLA definitions and measurement criteria
+   - Monitoring and alerting specifications
+
+5. **Architectural Decision Records** (ADRs.md)
+   - Technology stack decisions with full rationale
+   - Architecture pattern choices and trade-offs
+   - Buy vs build decisions with impact analysis
+   - Integration approach decisions
+</artifact_list>
+
+<output_structure>
+All artifacts must be created in the `documentation/SAS_detailed/` directory with the following file structure:
+```
+documentation/SAS_detailed/
+├── C4.md
+├── data_flow.md
+├── deployment.md
+├── non_functional.md
+└── ADRs.md
+```
+</output_structure>
+</deliverable_artifacts>
+
+<technical_standards>
+<diagram_standards>
+- **PlantUML Requirement**: All diagrams MUST use PlantUML syntax
+- **C4 Model Compliance**: Use official C4-PlantUML library for architectural diagrams
+- **Diagram Headers**: Include proper @startuml/@enduml tags with required imports
+- **Titles and Captions**: Every diagram must have descriptive title and caption
+- **Layout Direction**: Use standard layout (top-to-bottom for sequence, left-to-right for others)
+- **Legend Inclusion**: Add legends where appropriate for clarity
+
+<example_diagram_header>
+```plantuml
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title [System Name] - [Diagram Type]
+caption [Brief description of what this diagram shows]
+```
+</example_diagram_header>
+</diagram_standards>
+
+<documentation_standards>
+- **Markdown Format**: Use ATX-style headers (#, ##, ###)
+- **Table of Contents**: Include TOC for documents > 100 lines
+- **Code Blocks**: Use language-specific syntax highlighting
+- **Structured Data**: Use tables for comparative information
+- **Cross-References**: Link between documents using relative paths
+- **Version Control**: Include version history at document bottom
+</documentation_standards>
+
+<content_requirements>
+- **Precision**: Use specific technical terms and quantifiable metrics
+- **Traceability**: Link all decisions back to PRD requirements
+- **Actionability**: Ensure all content guides implementation decisions
+- **Completeness**: Address all aspects needed for SAS creation
+- **Consistency**: Maintain consistent terminology and patterns
+</content_requirements>
+</technical_standards>
+
+<artifact_specifications>
+<c4_diagrams>
+**File**: C4.md
+**Purpose**: Provide comprehensive architectural views using C4 model hierarchy
+
+**Required Content**:
+1. **System Context Diagram**
+   - External actors and their relationships to the system
+   - System boundaries and trust zones
+   - Key external dependencies and integrations
+   - Data flow directions and protocols
+
+2. **Container Diagram**
+   - High-level technical building blocks (web apps, APIs, databases)
+   - Technology choices for each container
+   - Inter-container communication patterns
+   - Deployment and runtime characteristics
+
+3. **Component Diagram**
+   - Internal structure of key containers
+   - Component responsibilities and interfaces
+   - Data flow between components
+   - Key architectural patterns employed
+
+**Quality Criteria**:
+- Each diagram includes proper PlantUML syntax with C4 imports
+- Clear relationships with descriptive labels
+- Consistent naming conventions across diagrams
+- Proper use of C4 stereotypes and styling
+</c4_diagrams>
+
+<data_flow_documentation>
+**File**: data_flow.md
+**Purpose**: Detailed analysis of data movement and transformation throughout the system
+
+**Required Content**:
+1. **Data Flow Overview**
+   - High-level data flow patterns
+   - Key data entities and their lifecycle
+   - Data transformation points
+   - Data validation and quality gates
+
+2. **Process-Specific Flows**
+   - Detailed flow for each major business process
+   - Step-by-step data transformation descriptions
+   - Error handling and recovery mechanisms
+   - Performance and scalability considerations
+
+3. **Integration Data Flows**
+   - External system data exchange patterns
+   - API contracts and data formats
+   - Batch vs real-time processing decisions
+   - Data synchronization strategies
+
+**Quality Criteria**:
+- Complete coverage of all data flows mentioned in PRD
+- Clear identification of data owners and consumers
+- Explicit error handling and edge case coverage
+- Performance implications documented
+</data_flow_documentation>
+
+<deployment_architecture>
+**File**: deployment.md
+**Purpose**: Infrastructure and deployment strategy documentation
+
+**Required Content**:
+1. **Deployment Diagram**
+   - Infrastructure components and their relationships
+   - Network topology and security zones
+   - Load balancing and scaling mechanisms
+   - Backup and disaster recovery setup
+
+2. **Environment Strategy**
+   - Development, staging, and production environments
+   - Environment-specific configurations
+   - Promotion and deployment processes
+   - Infrastructure as Code approach
+
+3. **Operational Considerations**
+   - Monitoring and logging infrastructure
+   - Health checks and alerting setup
+   - Maintenance and upgrade procedures
+   - Capacity planning and scaling triggers
+
+**Quality Criteria**:
+- Deployment diagram uses proper PlantUML notation
+- Clear separation of concerns and security boundaries
+- Scalability and availability requirements addressed
+- Operational procedures clearly defined
+</deployment_architecture>
+
+<non_functional_requirements>
+**File**: non_functional.md
+**Purpose**: Comprehensive specification of system quality attributes
+
+**Required Content**:
+1. **Performance Requirements**
+   - Response time targets (P50, P95, P99)
+   - Throughput requirements (requests/second, transactions/minute)
+   - Resource utilization limits (CPU, memory, storage)
+   - Scalability targets and growth projections
+
+2. **Availability and Reliability**
+   - Uptime targets and SLA definitions
+   - Fault tolerance and recovery requirements
+   - Backup and disaster recovery specifications
+   - Maintenance window allowances
+
+3. **Security and Compliance**
+   - Authentication and authorization requirements
+   - Data protection and encryption standards
+   - Audit logging and compliance needs
+   - Security testing and vulnerability management
+
+4. **Monitoring and Observability**
+   - Key performance indicators (KPIs)
+   - Alerting thresholds and escalation procedures
+   - Logging requirements and retention policies
+   - Distributed tracing and debugging capabilities
+
+**Quality Criteria**:
+- All requirements are quantified and measurable
+- Clear verification methods for each requirement
+- Realistic targets based on business needs
+- Complete coverage of quality attributes
+</non_functional_requirements>
+
+<architectural_decision_records>
+**File**: ADRs.md
+**Purpose**: Comprehensive record of all architectural decisions with full context and rationale
+
+**Required Content**:
+1. **Technology Stack Decisions**
+   - Programming languages, frameworks, and libraries
+   - Database technologies and data storage approaches
+   - Infrastructure and cloud platform choices
+   - Third-party service and tool selections
+
+2. **Architecture Pattern Decisions**
+   - Overall architectural style (monolithic, microservices, serverless)
+   - Communication patterns (synchronous vs asynchronous)
+   - Data consistency and transaction management approaches
+   - Caching and performance optimization strategies
+
+3. **Integration and Interface Decisions**
+   - API design standards and protocols
+   - Message queue and event streaming choices
+   - External system integration approaches
+   - Data format and serialization standards
+
+**ADR Template Structure**:
+```
+## ADR-XXX: [Decision Title]
+
+**Status**: [Proposed | Accepted | Deprecated | Superseded]
+
+**Context**: [Problem statement and forces at play]
+
+**Decision**: [What was decided and why]
+
+**Consequences**: [Positive and negative impacts]
+
+**Alternatives Considered**: [Other options and why they were rejected]
+
+**Related Decisions**: [Links to other ADRs or documents]
+```
+
+**Quality Criteria**:
+- Each decision includes comprehensive context and rationale
+- Alternatives are thoroughly evaluated with trade-offs
+- Consequences address both benefits and drawbacks
+- Decisions are traceable to PRD requirements
+</architectural_decision_records>
+</artifact_specifications>
+
+<workflow_and_process>
+<creation_sequence>
+1. **System Analysis Phase**
+   - Review PRD and extract technical requirements
+   - Identify system boundaries and external dependencies
+   - Create initial system context understanding
+
+2. **Architecture Design Phase**
+   - Develop C4 diagrams starting with system context
+   - Design container and component architectures
+   - Document data flows and integration patterns
+
+3. **Infrastructure Planning Phase**
+   - Design deployment architecture and infrastructure
+   - Plan environment strategy and operational procedures
+   - Define monitoring and observability approach
+
+4. **Requirements Specification Phase**
+   - Quantify non-functional requirements
+   - Define SLA targets and measurement criteria
+   - Establish security and compliance standards
+
+5. **Decision Documentation Phase**
+   - Document all architectural decisions with rationale
+   - Record technology choices and trade-offs
+   - Create comprehensive ADR collection
+
+6. **Integration and Review Phase**
+   - Ensure consistency across all artifacts
+   - Validate completeness against PRD requirements
+   - Prepare artifacts for SAS synthesis
+</creation_sequence>
+
+<quality_gates>
+**After Each Phase**:
+- [ ] All deliverables meet technical standards
+- [ ] Content is traceable to PRD requirements
+- [ ] Diagrams use proper notation and are readable
+- [ ] Documentation follows markdown standards
+- [ ] Cross-references between documents are correct
+
+**Before SAS Creation**:
+- [ ] All five artifact files are complete and consistent
+- [ ] Technical decisions are fully documented with rationale
+- [ ] Non-functional requirements are quantified and verifiable
+- [ ] Architecture supports all PRD requirements
+- [ ] Artifacts provide sufficient detail for SAS synthesis
+</quality_gates>
+</workflow_and_process>
+
+<integration_with_sas>
+<artifact_mapping>
+The prepared artifacts directly feed into specific SAS sections:
+
+- **C4.md** → SAS System Context Diagram & Component Architecture sections
+- **data_flow.md** → SAS Runtime Workflows & Data/API Contracts sections
+- **deployment.md** → SAS Infrastructure & Deployment section
+- **non_functional.md** → SAS Non-Functional Requirements Mapping section
+- **ADRs.md** → SAS Architectural Decision Records section
+</artifact_mapping>
+
+<synthesis_guidance>
+When creating the final SAS document:
+1. Extract and refine content from prepared artifacts
+2. Ensure consistency in terminology and technical decisions
+3. Add implementation-specific details and guidance
+4. Create traceability matrix linking PRD to architectural elements
+5. Validate that all PRD requirements are addressed
+6. Add detailed component designs and interface specifications
+</synthesis_guidance>
+</integration_with_sas>
+
+<success_criteria>
+<completion_criteria>
+- [ ] All five artifact files created in correct directory structure
+- [ ] Each artifact meets specified content and quality requirements
+- [ ] All diagrams use proper PlantUML notation and render correctly
+- [ ] Documentation follows established markdown standards
+- [ ] Content is complete, consistent, and traceable to PRD
+- [ ] Artifacts provide sufficient foundation for comprehensive SAS creation
+</completion_criteria>
+
+<validation_checklist>
+- [ ] System context is clearly defined with proper boundaries
+- [ ] Component architecture supports all functional requirements
+- [ ] Data flows are comprehensive and include error handling
+- [ ] Deployment architecture addresses scalability and availability
+- [ ] Non-functional requirements are quantified and realistic
+- [ ] All architectural decisions include proper rationale
+- [ ] Cross-references between documents are accurate
+- [ ] Technical standards are consistently applied
+- [ ] Content enables direct SAS document synthesis
+</validation_checklist>
+</success_criteria>
